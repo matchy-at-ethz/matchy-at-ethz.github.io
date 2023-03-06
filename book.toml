@@ -4,3 +4,14 @@ language = "en"
 multilingual = false
 src = "src"
 title = "Notes @ ETH Zürich"
+
+
+[output.wordcount]
+optional = true
+
+[output.html]
+mathjax-support = true
+
+[output.html.fold]
+enable = true
+level = 0
