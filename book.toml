@@ -9,6 +9,8 @@ title = "Notes @ ETH Zürich"
 [output.wordcount]
 optional = true
 
+[output.katex]
+
 [output.html]
 mathjax-support = true
 
