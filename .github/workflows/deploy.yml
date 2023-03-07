@@ -24,6 +24,11 @@ jobs:
         mkdir mdbook-katex
         curl -sSL https://github.com/lzanini/mdbook-katex/releases/download/v0.3.10/mdbook-katex-v0.3.10-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=./mdbook-katex
         echo `pwd`/mdbook-katex >> $GITHUB_PATH
+    - name: Install mdbook-toc
+      run: |
+        mkdir mdbook-toc
+        curl -sSL https://github.com/badboy/mdbook-toc/releases/download/0.11.2/mdbook-toc-0.11.2-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=./mdbook-toc
+        echo `pwd`/mdbook-toc >> $GITHUB_PATH
     - name: Deploy GitHub Pages
       run: |
         # This assumes your book is in the root of your repository.

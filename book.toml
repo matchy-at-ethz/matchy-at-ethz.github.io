@@ -14,8 +14,12 @@ mathjax-support = true
 enable = true
 level = 0
 
+[output.pytoc]
+command = "python3 ../../scripts/autogen-toc.py"
+
 [preprocessor.katex]
 renderers = ["html"]
 
-[output.pytoc]
-command = "python3 ../../scripts/autogen-toc.py"
+[preprocessor.toc]
+command = "mdbook-toc"
+renderers = ["html"]
