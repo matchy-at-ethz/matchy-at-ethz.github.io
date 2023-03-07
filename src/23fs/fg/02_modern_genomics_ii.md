@@ -18,7 +18,7 @@ $$
 
 Below shows two examples of $D$ calculation.
 
-![](./img/02-ld-example1.png)
+![LD example 1](./img/02-ld-example1.png)
 
 $$
 D = \frac{P{AB} - \fracP{A} \fracP{B}}{\fracP{A} \fracP{B}} = \frac{5}{12} - \frac{8}{12}\times\frac{6}{12} = \frac{1}{12}
@@ -26,7 +26,7 @@ $$
 
 A and B are linked to some extent.
 
-![](./img/02-ld-example2.png)
+![LD example 2](./img/02-ld-example2.png)
 
 $$
 D = \frac{P{AB} - \fracP{A} \fracP{B}}{\fracP{A} \fracP{B}} = \frac{6}{12} - \frac{8}{12}\times\frac{9}{12} = 0
@@ -55,7 +55,7 @@ where $n_c = \frac{n(n-1)}{2}$ is the number of pairwise comparisons, and $\pi_{
 
 Below shows an example of $\pi$ calculation.
 
-![](./img/02-nt-diversity.png)
+![Nucleotide diversity example](./img/02-nt-diversity.png)
 
 $$
 \pi = \sum_{i < j} \frac{\pi_{ij}}{n_c} = \frac{\pi_{12} + \pi_{13} + \pi_{23}}{3} = 0.2
