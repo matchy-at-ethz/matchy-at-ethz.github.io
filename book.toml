@@ -5,10 +5,6 @@ multilingual = false
 src = "src"
 title = "Notes @ ETH Zürich"
 
-
-[output.wordcount]
-optional = true
-
 [output.katex]
 
 [output.html]
@@ -20,3 +16,10 @@ level = 0
 
 [preprocessor.katex]
 renderers = ["html"]
+
+[preprocessor.toc]
+command = "mdbook-toc"
+renderer = ["html"]
+
+[output.pytoc]
+command = "python3 ../../scripts/autogen-toc.py"
