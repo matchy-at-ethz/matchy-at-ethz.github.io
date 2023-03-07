@@ -6,16 +6,20 @@ Unimportant text is grayed out but worth reading for fluency and context.
 
 ## Motivation
 
-<span style="color:gray">
-We are interested in the expression of genes in a cell. Altough <u>proteins are the actors</u> of genes instead of mRNA transcripts, <em>mRNAs transcripts are easier to measure</em> because selection has chosen them to convey the genetic message in a faithful way. Also there are plenty of interesting <em>non-coding RNAs</em>.
-</span>
+<span style="color:gray"> We are interested in the expression of genes in a
+cell. Altough <u>proteins are the actors</u> of genes instead of mRNA
+transcripts, <em>mRNAs transcripts are easier to measure</em> because selection
+has chosen them to convey the genetic message in a faithful way. Also there are
+plenty of interesting <em>non-coding RNAs</em>. </span>
 
 ## RNA species
 
 80% of the total RNA is rRNA. 14% is tRNA. Only 1-3% is mRNA. All other species
 account for the remaining 1-3%.
 
-<img src="img/03-rna-species.png" alt="RNA species" style="zoom:50%;" /><img src="img/03-rna-prevalence-pie-chart.png" alt="Prevalence of RNA species" style="zoom:50%;" />
+<img src="img/03-rna-species.png" alt="RNA species" style="zoom:50%;" /><img
+src="img/03-rna-prevalence-pie-chart.png" alt="Prevalence of RNA species"
+style="zoom:50%;" />
 
 ## RNA selection methods
 
@@ -35,11 +39,11 @@ account for the remaining 1-3%.
   - Design target probes that bind to a certain set of RNAs
   - Limited transcriptome coverage
 
-<span style="color:gray">
-90% of transcriptome research utilize poly-A
+<span style="color:gray"> 90% of transcriptome research utilize poly-A
 selection; 5% of them go for ribosomal depletion because their mRNAs are of low
 quality and fragmented. The rest 5% do have high-quality mRNAs but still go for
-ribosomal depletion because they want to estimate other RNA species at the same time.</span>
+ribosomal depletion because they want to estimate other RNA species at the same
+time.</span>
 
 Note: current illumina sequencers cannot sequence miRNAs (20-25nt) and mRNA
 fragments (100-300nt) together (<u>because of the large length discrepency</u>)
@@ -50,10 +54,8 @@ A typical RNA-seq experiment workflow is shown below.
 
 ![Typical RNA-seq experiment](img/03-rna-seq-experiment-workflow.png)
 
-<span style="color:gray">
-We can do either single-read sequencing or paired-end sequencing (as is shown in
-the figure above) in the third step.
-</span>
+<span style="color:gray"> We can do either single-read sequencing or paired-end
+sequencing (as is shown in the figure above) in the third step. </span>
 
 <img src="img/03-paired-end-seq.png" alt="Paired-end sequencing"
 style="zoom:60%;" />
@@ -70,11 +72,10 @@ The following sections will go into more details about each step.
 - RNA-seq experiments are implemented as **comparative experiments**
 - RNA-seq is used to measure the **relative abundance (expression)** of each
   mRNA (gene) in a <u>sample</u>
-  - <span style="color:gray"><u>sample</u></span><span style="color:gray">: We cannot sequence all the RNA
-    fragments. Instead, we randomly select about 20M fragments as a
-    representation of the total RNA obtained. Note that we can sample multiple
-    times. </span><span style="color:gray">Comparisons are only meaningful if
-    made within the same sample.</span>
+  - <span style="color:gray"><u>sample</u></span><span style="color:gray">: We
+    cannot sequence all the RNA fragments. Instead, we randomly select about 20M
+    fragments as a representation of the total RNA obtained. Note that we can
+    sample multiple times. </span>
 - <span style="color:gray">RNA-seq can link gene expression to</span>
   - <span style="color:gray">genotype</span>
   - <span style="color:gray">phenotype</span>
@@ -97,8 +98,8 @@ genome instead of the whole spliced sequences. The existence of <u>alternative
 splicing (protein isoforms)</u> and <u>sequencing errors</u> makes the mapping
 process even more complicated. </span>
 
-<span style="color:gray"> While discussing the mapping process,
-those limitations and problems should be kept in mind. </span>
+<span style="color:gray"> While discussing the mapping process, those
+limitations and problems should be kept in mind. </span>
 
 #### How to map reads to a genome?
 
@@ -108,8 +109,8 @@ those limitations and problems should be kept in mind. </span>
   - Able to handle SNPs, indels and sequencing errors
 
 We can always perform sequence alignment (here needs local
-alignment/**Smith-Waterman alignment**). Of course the score matrix should be good
-to determine the correct alignment. But this is slow because it requires
+alignment/**Smith-Waterman alignment**). Of course the score matrix should be
+good to determine the correct alignment. But this is slow because it requires
 quadratic efforts.
 
 #### What if we want to map billions of reads?
@@ -119,8 +120,8 @@ quadratic efforts.
   - Usually hashed so the lookup time is much faster
   - If lookup fails, actual sequence comparison is performed (more details on
     this in next chapter)
-  - Major aligners use the <u>**Burrows-Wheeler transform (BWT)**</u> to index the
-    reference genome
+  - Major aligners use the <u>**Burrows-Wheeler transform (BWT)**</u> to index
+    the reference genome
     - <span style="color:gray">Very small. Even for the human genome the index
       fits into 3GB RAM. </span>
 - Example aligners
@@ -136,7 +137,8 @@ quadratic efforts.
 - **SNPs**
   - <span style="color:gray">Can always be handled by performing real
     Smith-Waterman alignment but expensive </span>
-  - At mismatched positions, try all possible bases and search the BWT index again
+  - At mismatched positions, try all possible bases and search the BWT index
+    again
     - Computing effort grows exponentially
   - **Gapped alignment**
     - Chop reads into short segments (seeds)
@@ -145,7 +147,8 @@ quadratic efforts.
     - stitch them back together
     - Might require multiple rounds of chopping
 - **Indels**
-  - Can only be found with **gapped alignment** (described above), BWT lookup is not enough
+  - Can only be found with **gapped alignment** (described above), BWT lookup is
+    not enough
 
 #### How to deal with introns (basically very large insertions)?
 
@@ -167,12 +170,15 @@ quadratic efforts.
   - associated *retrotransposed* spliced sequence of a certain gene, thus
     *intron-free*, and appears "*exonic*"
   - Have almost the same sequence as the original gene
-  - Not functional because they do not have access to promotors so won't be transcribed
-  - Usually contain more mutations because there are no selection pressures to keep them intact
+  - Not functional because they do not have access to promotors so won't be
+    transcribed
+  - Usually contain more mutations because there are no selection pressures to
+    keep them intact
   - Exonic reads will map to both the gene and its pseudogene, but likely
     preferring gene placement due to lack of mutations
   - A spliced read could be incorrectly assigned to the pseudogene as it appears
-    to be exonic, preventing higher scoring spliced alignments from being pursued
+    to be exonic, preventing higher scoring spliced alignments from being
+    pursued
 
 ### Bowtie
 
@@ -183,8 +189,8 @@ quadratic efforts.
   - Exact matching
 - Searched suffix appears consecutively in BWT
 - The size of range in BWT shrinks or remains the same
-- <u>**almost does not handle mismatches**</u>; a single mismatch will lead to <u>empty BWT</u>
-  range / failed index lookup
+- <u>**almost does not handle mismatches**</u>; a single mismatch will lead to
+  <u>empty BWT</u> range / failed index lookup
   - mismatches can come from
     - Sequencing error (illumina: $1/1000$)
     - True variation (SNPs, human mutation rate $\approx 1/10^4$
@@ -232,7 +238,8 @@ reads into even shorter segments and splice site identification etc.
     - Q-score = 20: prob = 0.01
     - Q-score = 30: prob = 0.001
   - **Q30** is often used as a cutoff for high quality reads
-- How to use: downweight the low-quality bases when computing the alignment score
+- How to use: downweight the low-quality bases when computing the alignment
+  score
 - <span style="color:gray">First introduced for capillary sequencers</span>
 - <span style="color:gray">PHRED scores are determined by the sequencer that
   directly rates how reliable the measured signal is</span>
@@ -245,7 +252,8 @@ reads.
 - Reasons for trimming:
   - Systemetic errors of sequencer
     - Illumina sequencers have high error rate at the first few bases
-    - Basically all sequencers have increasing error rate towards the end of the read
+    - Basically all sequencers have increasing error rate towards the end of the
+      read
   - Adapter trimming
     - If the inserted DNA/RNA fragment is too short, the read will contain part
       of the adapter (since the sequencer generally will sequence 100bp at each
@@ -255,11 +263,13 @@ reads.
         will only be a few bp long
       - The read has many sequencing errors
   - 3'-bias / degradation
-    - The 3' end of the read is generally more likely to be degraded than the 5' end
+    - The 3' end of the read is generally more likely to be degraded than the 5'
+      end
     - Depending on RNA degradation and extration protocols reads may not be
       equally distributed along the transcripts
 - Trimming methods
-  - **Hard trimming**: trim a fixed number of bases from the beginning and/or end
+  - **Hard trimming**: trim a fixed number of bases from the beginning and/or
+    end
   - **Quality trimming**: cut the end of the read as soon as the base quality
     drops below a threshold
   - **Soft trimming**: trim the read that cannot be aligned to the reference
@@ -267,11 +277,14 @@ reads.
 
 ### Multiple alignments and report considerations
 
-- A read may have multiple valid alignments with identical or similarly good alignment scores
+- A read may have multiple valid alignments with identical or similarly good
+  alignment scores
   - Aligners may use different reporting strategies:
     - **Randomly** select one alignment from the top-scoring alignments
-    - Report <u>all</u> alignments that are <u>within delta</u> of the top-scoring alignment; clip if more than $N_{max}$ alignments are found
-    - Report only alignments if they are **unique** (no other alignment within delta of the alignment score)
+    - Report <u>all</u> alignments that are <u>within delta</u> of the
+      top-scoring alignment; clip if more than $N_{max}$ alignments are found
+    - Report only alignments if they are **unique** (no other alignment within
+      delta of the alignment score)
     - Do not report anything if more than $N_{max}$ valid alignments are found
     - …
 - Whether a read has a **unique alignment** depends on
@@ -293,12 +306,42 @@ reads.
 - **Unique mapped reads**
   - Multi-reads are ignored – potentially biased quantification
 - **All mapped reads**
-  - Assignment of multi-reads need abundance estimation of overlapped genes/isoforms
+  - Assignment of multi-reads need abundance estimation of overlapped
+    genes/isoforms
 
-#### Reporting isoforms
+![Read counting](img/03-read-counting.png)
 
 #### EM estimation
 
+- General steps
+  1. Estimate abundances based on <u>uniquely mapping reads only</u>
+  2. For each multi-read, divide it between the transcripts to which it maps, proportionally to their abundances estimated in the first step
+  3. Recompute abundances based on updated counts for each transcript
+  r.
+  4. Continue with Step 2
+- Model the sequencing and analysis process with a likelihood function
+- E-step: Compute expected read counts given current expression levels
+- M-step: Compute expression values maximizing likelihood given expected read counts
+
 #### Alignment-free RNA-seq quantification
+
+Instead of building BWT, we build hashed k-mer index based on known
+transcriptome, and search the k-mers in the reads to map and compute abundance.
+
+Easier to understand through side-by-side comparison with the traditional
+alignment dependent method:
+
+![Alignment dependent v.s. alignment free](img/03-kmer.png)
+
+While allocating k-mer to transcript, we try to make each transcript covered
+as uniformly as possible.
+
+- Pros
+  - Accurate and fast in quantifying **KNOWN TRANSCRIPTS**
+  - Counts can be aggregated to get gene-level quantification
+- Cons
+  - Less well annotated genomes – less accurate results
+  - No alignments – no information about SNPs
+  - Transcript coverage is not uniform
 
 ### Normalization
