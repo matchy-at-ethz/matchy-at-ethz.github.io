@@ -17,9 +17,5 @@ level = 0
 [preprocessor.katex]
 renderers = ["html"]
 
-[preprocessor.toc]
-command = "mdbook-toc"
-renderer = ["html"]
-
 [output.pytoc]
 command = "python3 ../../scripts/autogen-toc.py"
