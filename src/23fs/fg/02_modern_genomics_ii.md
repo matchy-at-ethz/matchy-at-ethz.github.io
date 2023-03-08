@@ -21,7 +21,7 @@ Below shows two examples of $D$ calculation.
 ![LD example 1](./img/02-ld-example1.png)
 
 $$
-D = \frac{P{AB} - \fracP{A} \fracP{B}}{\fracP{A} \fracP{B}} = \frac{5}{12} - \frac{8}{12}\times\frac{6}{12} = \frac{1}{12}
+D = \frac{P_{AB} - P_{A} P_{B}}{P_{A} P_{B}} = \frac{5}{12} - \frac{8}{12}\times\frac{6}{12} = \frac{1}{12}
 $$
 
 A and B are linked to some extent.
@@ -29,7 +29,7 @@ A and B are linked to some extent.
 ![LD example 2](./img/02-ld-example2.png)
 
 $$
-D = \frac{P{AB} - \fracP{A} \fracP{B}}{\fracP{A} \fracP{B}} = \frac{6}{12} - \frac{8}{12}\times\frac{9}{12} = 0
+D = \frac{P_{AB} - P_{A} P_{B}}{P_{A} P_{B}} = \frac{6}{12} - \frac{8}{12}\times\frac{9}{12} = 0
 $$
 
 Here A and B are not linked at all.
