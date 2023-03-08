@@ -1,0 +1,778 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Notes @ ETH Zürich</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item affix "><a href="index.html">Home</a></li><li class="spacer"></li><li class="chapter-item affix "><li class="part-title">22HS</li><li class="chapter-item "><div><strong aria-hidden="true">1.</strong> Computational Biology</div></li><li class="spacer"></li><li class="chapter-item affix "><li class="part-title">23FS</li><li class="chapter-item "><a href="23fs/mham/mobile_health_and_activity_monitoring.html"><strong aria-hidden="true">2.</strong> Mobile Health and Activity Monitoring</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><div><strong aria-hidden="true">2.1.</strong> Introduction</div></li></ol></li><li class="chapter-item "><a href="23fs/fg/functional_genomics.html"><strong aria-hidden="true">3.</strong> Functional Genomics</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><div><strong aria-hidden="true">3.1.</strong> Modern Genomics I</div></li><li class="chapter-item "><a href="23fs/fg/02_modern_genomics_ii.html"><strong aria-hidden="true">3.2.</strong> Modern Genomics II</a></li><li class="chapter-item "><a href="23fs/fg/03_transcriptomics_i.html"><strong aria-hidden="true">3.3.</strong> Transcriptomics I</a></li><li class="chapter-item "><div><strong aria-hidden="true">3.4.</strong> Transcriptomics II</div></li><li class="chapter-item "><div><strong aria-hidden="true">3.5.</strong> MicroRNAs and other small RNAs</div></li><li class="chapter-item "><div><strong aria-hidden="true">3.6.</strong> Proteomics</div></li><li class="chapter-item "><div><strong aria-hidden="true">3.7.</strong> Metabolomics</div></li><li class="chapter-item "><div><strong aria-hidden="true">3.8.</strong> Single Cell Mass Cytometry</div></li><li class="chapter-item "><div><strong aria-hidden="true">3.9.</strong> Protein Networks</div></li><li class="chapter-item "><div><strong aria-hidden="true">3.10.</strong> Epigenomics and Gene Regulation</div></li><li class="chapter-item "><div><strong aria-hidden="true">3.11.</strong> Qualitiy Control and Standards</div></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Notes @ ETH Zürich</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="notes-taken--eth-zurich"><a class="header" href="#notes-taken--eth-zurich">Notes taken @ ETH Zurich</a></h1>
+<h2 id="table-of-contents"><a class="header" href="#table-of-contents">Table of Contents</a></h2>
+<h3 id="23fs"><a class="header" href="#23fs">23FS</a></h3>
+<ul>
+<li><a href="./23fs/fg/functional_genomics.html">Functional Genomics</a></li>
+<li><a href="./23fs/mham/mobile_health_and_activity_monitoring.html">Mobile Health and Activity Monitoring</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="mobile-health-and-activity-monitoring"><a class="header" href="#mobile-health-and-activity-monitoring">Mobile Health and Activity Monitoring</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="functional-genomics"><a class="header" href="#functional-genomics">Functional Genomics</a></h1>
+<h2 id="table-of-contents-1"><a class="header" href="#table-of-contents-1">Table of Contents</a></h2>
+<!-- toc -->
+<ul>
+<li><a href="23fs/fg/01_modern_genomics_i.html">01. Modern Genomics I</a></li>
+<li><a href="23fs/fg/02_modern_genomics_ii.html">02. Modern Genomics II</a></li>
+<li><a href="23fs/fg/03_transcriptomics_i.html">03. Transcriptomics I</a></li>
+<li><a href="23fs/fg/04_transcriptomics_ii.html">04. Transcriptomics II</a></li>
+<li><a href="23fs/fg/05_mirnas_and_other_small_rnas.html">05. miRNAs and Other Small RNAs</a></li>
+<li><a href="23fs/fg/06_proteomics.html">06. Proteomics</a></li>
+<li><a href="23fs/fg/07_metabolomics.html">07. Metabolomics</a></li>
+<li><a href="23fs/fg/08_single_cell_mass_cytometry.html">08. Single Cell Mass Cytometry</a></li>
+<li><a href="23fs/fg/09_protein_networks.html">09. Protein Networks</a></li>
+<li><a href="23fs/fg/10_epigenomics_and_gene_regulation.html">10. Epigenomics and Gene Regulation</a></li>
+<li><a href="23fs/fg/11_quality_control_and_standards.html">11. Quality Control and Standards</a></li>
+</ul>
+<!-- toc -->
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="modern-genomics-ii"><a class="header" href="#modern-genomics-ii">Modern Genomics II</a></h1>
+<p>I cannot understand his accent...</p>
+<ul>
+<li><a href="23fs/fg/02_modern_genomics_ii.html#contents-that-i-think-are-important">Contents that (I think) are important</a>
+<ul>
+<li><a href="23fs/fg/02_modern_genomics_ii.html#linkage-disequilibrium-ld">Linkage disequilibrium (LD)</a>
+<ul>
+<li><a href="23fs/fg/02_modern_genomics_ii.html#coefficient-of-linkage-disequilibrium-d">Coefficient of linkage disequilibrium D</a></li>
+</ul>
+</li>
+<li><a href="23fs/fg/02_modern_genomics_ii.html#relative-measures-of-ld">Relative measures of LD</a></li>
+<li><a href="23fs/fg/02_modern_genomics_ii.html#nucleotide-diversity-%CF%80">Nucleotide diversity π</a></li>
+</ul>
+</li>
+<li><a href="23fs/fg/02_modern_genomics_ii.html#course-contents-according-to-recording">Course contents according to recording</a></li>
+</ul>
+<h2 id="contents-that-i-think-are-important"><a class="header" href="#contents-that-i-think-are-important">Contents that (I think) are important</a></h2>
+<h3 id="linkage-disequilibrium-ld"><a class="header" href="#linkage-disequilibrium-ld">Linkage disequilibrium (LD)</a></h3>
+<h4 id="coefficient-of-linkage-disequilibrium-d"><a class="header" href="#coefficient-of-linkage-disequilibrium-d">Coefficient of linkage disequilibrium <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span></span></span></span></a></h4>
+<p>Given two loci <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span></span></span></span> and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span> (can have allele <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span></span></span></span> or <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span>, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span> or <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span>), the coefficient of linkage disequilibrium <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span></span></span></span> is defined as</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.1963em;vertical-align:-0.836em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">A</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">A</span><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">A</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.836em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>Below shows two examples of <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span></span></span></span> calculation.</p>
+<p><img src="23fs/fg/./img/02-ld-example1.png" alt="LD example 1" /></p>
+<p><span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.1963em;vertical-align:-0.836em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">A</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">A</span><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">A</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.836em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">12</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">12</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">8</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">12</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">6</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">12</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>A and B are linked to some extent.</p>
+<p><img src="23fs/fg/./img/02-ld-example2.png" alt="LD example 2" /></p>
+<p><span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.1963em;vertical-align:-0.836em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">A</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">A</span><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">A</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.836em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">12</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">6</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">12</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">8</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">12</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">9</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span></p>
+<p>Here A and B are not linked at all.</p>
+<p>Basically we are testing whether P(A) and P(B) are <u>independent</u>.</p>
+<h3 id="relative-measures-of-ld"><a class="header" href="#relative-measures-of-ld">Relative measures of LD</a></h3>
+<ol>
+<li><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.3232em;vertical-align:-0.4509em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8723em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567em;margin-left:-0.1389em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">A</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1433em;"><span></span></span></span></span></span></span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1645em;"><span style="top:-2.357em;margin-left:-0.1389em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">a</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567em;margin-left:-0.1389em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1433em;"><span></span></span></span></span></span></span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3488em;margin-left:-0.1389em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1512em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">D</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4509em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></li>
+<li><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7519em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.3174em;vertical-align:-0.4451em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8723em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1645em;"><span style="top:-2.357em;margin-left:-0.0278em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mop mtight"><span class="mtight">m</span><span class="mtight">a</span><span class="mtight">x</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">D</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4451em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> if <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span></span></span></span> is positive, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7519em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.3174em;vertical-align:-0.4451em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8723em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.334em;"><span style="top:-2.357em;margin-left:-0.0278em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mop mtight"><span class="mtight">m</span><span class="mtight">i</span><span class="mtight">n</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">D</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4451em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> if <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span></span></span></span> is negative</li>
+</ol>
+<h3 id="nucleotide-diversity-π"><a class="header" href="#nucleotide-diversity-π">Nucleotide diversity <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span></span></span></span></a></h3>
+<p><span style="color:gray">Average proportion of pairwise differences between the sequences</span></p>
+<p>Give a multiple sequence alignment, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span></span></span></span> is defined as</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.5213em;vertical-align:-1.4138em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.05em;"><span style="top:-1.8723em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">&lt;</span><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.4138em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1076em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">ij</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.836em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>where <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.355em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mopen mtight">(</span><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> is the number of pairwise comparisons, and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7167em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">ij</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span> is the proportion of differences between the <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span>th and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.854em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span></span></span></span>th sequences.</p>
+<p>Below shows an example of <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span></span></span></span> calculation.</p>
+<p><img src="23fs/fg/./img/02-nt-diversity.png" alt="Nucleotide diversity example" /></p>
+<p><span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.5213em;vertical-align:-1.4138em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.05em;"><span style="top:-1.8723em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">&lt;</span><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.4138em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1076em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">ij</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.836em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.9463em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.2603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">12</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">13</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">23</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.2</span></span></span></span></span></p>
+<p>Basically just calculating the average number of differences in the matrix.</p>
+<h2 id="course-contents-according-to-recording"><a class="header" href="#course-contents-according-to-recording">Course contents according to recording</a></h2>
+<p>Title: Applications of next-generation sequencing and other genomic techniques</p>
+<ol>
+<li>Resequencing to identify genetic basis of phenotypic variation
+<ol>
+<li>Outlier approach</li>
+<li>Genome-wide association studies (<strong>GWAS</strong>) and <strong>linkage disequilibrium</strong></li>
+</ol>
+</li>
+<li>Introduction to RNA-seq (transcriptome) focusing on genome duplication</li>
+<li>Resequencing to detect signature of selection: <strong>nucleotide diversity</strong></li>
+</ol>
+<p>Microbial community and metagenomics, ChIP-seq, epigenomics, whole genome assembly as reference</p>
+<ul>
+<li>Evolutionary functional genomics can...
+<ul>
+<li>identify ecologically relevant genes</li>
+<li>inferring selection &amp; population processes</li>
+</ul>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="transcriptomics-i"><a class="header" href="#transcriptomics-i">Transcriptomics I</a></h1>
+<p>Unimportant text is grayed out but worth reading for fluency and context.</p>
+<ul>
+<li><a href="23fs/fg/03_transcriptomics_i.html#motivation">Motivation</a></li>
+<li><a href="23fs/fg/03_transcriptomics_i.html#rna-species">RNA species</a></li>
+<li><a href="23fs/fg/03_transcriptomics_i.html#rna-selection-methods">RNA selection methods</a></li>
+<li><a href="23fs/fg/03_transcriptomics_i.html#rna-seq-experiment-workflow-overview">RNA-seq experiment workflow overview</a></li>
+<li><a href="23fs/fg/03_transcriptomics_i.html#rna-seq-experiment-design">RNA-seq experiment design</a></li>
+<li><a href="23fs/fg/03_transcriptomics_i.html#rna-seq-read-mapping-methods">RNA-seq read mapping methods</a>
+<ul>
+<li><a href="23fs/fg/03_transcriptomics_i.html#considerations">Considerations</a>
+<ul>
+<li><a href="23fs/fg/03_transcriptomics_i.html#how-to-map-reads-to-a-genome">How to map reads to a genome?</a></li>
+<li><a href="23fs/fg/03_transcriptomics_i.html#what-if-we-want-to-map-billions-of-reads">What if we want to map billions of reads?</a></li>
+<li><a href="23fs/fg/03_transcriptomics_i.html#how-to-deal-with-snps-and-indels">How to deal with SNPs and indels?</a></li>
+<li><a href="23fs/fg/03_transcriptomics_i.html#how-to-deal-with-introns-basically-very-large-insertions">How to deal with introns (basically very large insertions)?</a></li>
+</ul>
+</li>
+<li><a href="23fs/fg/03_transcriptomics_i.html#bowtie">Bowtie</a></li>
+<li><a href="23fs/fg/03_transcriptomics_i.html#tophat2">TopHat2</a></li>
+<li><a href="23fs/fg/03_transcriptomics_i.html#star">STAR</a></li>
+</ul>
+</li>
+<li><a href="23fs/fg/03_transcriptomics_i.html#quality-control-and-reporting-considerations-after-mapping">Quality control and reporting considerations after mapping</a>
+<ul>
+<li><a href="23fs/fg/03_transcriptomics_i.html#phread-quality">PHREAD quality</a></li>
+<li><a href="23fs/fg/03_transcriptomics_i.html#read-trimming">Read trimming</a></li>
+<li><a href="23fs/fg/03_transcriptomics_i.html#multiple-alignments-and-report-considerations">Multiple alignments and report considerations</a></li>
+</ul>
+</li>
+<li><a href="23fs/fg/03_transcriptomics_i.html#expression-quantification">Expression quantification</a>
+<ul>
+<li><a href="23fs/fg/03_transcriptomics_i.html#how-to-count-reads">How to count reads?</a>
+<ul>
+<li><a href="23fs/fg/03_transcriptomics_i.html#em-estimation">EM estimation</a></li>
+<li><a href="23fs/fg/03_transcriptomics_i.html#alignment-free-rna-seq-quantification">Alignment-free RNA-seq quantification</a></li>
+</ul>
+</li>
+<li><a href="23fs/fg/03_transcriptomics_i.html#normalization">Normalization</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="motivation"><a class="header" href="#motivation">Motivation</a></h2>
+<p><span style="color:gray"> We are interested in the expression of genes in a
+cell. Altough <u>proteins are the actors</u> of genes instead of mRNA
+transcripts, <em>mRNAs transcripts are easier to measure</em> because selection
+has chosen them to convey the genetic message in a faithful way. Also there are
+plenty of interesting <em>non-coding RNAs</em>. </span></p>
+<h2 id="rna-species"><a class="header" href="#rna-species">RNA species</a></h2>
+<p>80% of the total RNA is rRNA. 14% is tRNA. Only 1-3% is mRNA. All other species
+account for the remaining 1-3%.</p>
+<p><img src="23fs/fg/img/03-rna-species.png" alt="RNA species" style="zoom:50%;" /><img
+src="img/03-rna-prevalence-pie-chart.png" alt="Prevalence of RNA species"
+style="zoom:50%;" /></p>
+<h2 id="rna-selection-methods"><a class="header" href="#rna-selection-methods">RNA selection methods</a></h2>
+<p><img src="23fs/fg/img/03-rna-selection-method.png" alt="RNA selection methods" /></p>
+<ul>
+<li>A: total RNA
+<ul>
+<li>Unbiased estimation</li>
+<li>Dominate by rRNA, not very informative</li>
+</ul>
+</li>
+<li>B: ribosomal reduction/depletion
+<ul>
+<li>Use probes that bind to rRNA and pull them out</li>
+<li>&lt; 5% rRNA left</li>
+</ul>
+</li>
+<li>C: poly-A selection
+<ul>
+<li>Use probes that bind to poly-A tails</li>
+<li>Selects for mRNA, and also some long non-coding RNAs (because they also have
+poly-A tails)</li>
+</ul>
+</li>
+<li>D: cDNA capture
+<ul>
+<li>Design target probes that bind to a certain set of RNAs</li>
+<li>Limited transcriptome coverage</li>
+</ul>
+</li>
+</ul>
+<p><span style="color:gray"> 90% of transcriptome research utilize poly-A
+selection; 5% of them go for ribosomal depletion because their mRNAs are of low
+quality and fragmented. The rest 5% do have high-quality mRNAs but still go for
+ribosomal depletion because they want to estimate other RNA species at the same
+time.</span></p>
+<p>Note: current illumina sequencers cannot sequence miRNAs (20-25nt) and mRNA
+fragments (100-300nt) together (<u>because of the large length discrepency</u>)</p>
+<h2 id="rna-seq-experiment-workflow-overview"><a class="header" href="#rna-seq-experiment-workflow-overview">RNA-seq experiment workflow overview</a></h2>
+<p>A typical RNA-seq experiment workflow is shown below.</p>
+<p><img src="23fs/fg/img/03-rna-seq-experiment-workflow.png" alt="Typical RNA-seq experiment" /></p>
+<p><span style="color:gray"> We can do either single-read sequencing or paired-end
+sequencing (as is shown in the figure above) in the third step. </span></p>
+<p><img src="23fs/fg/img/03-paired-end-seq.png" alt="Paired-end sequencing"
+style="zoom:60%;" /></p>
+<p>It can also be summarized into a flow diagram.</p>
+<p><img src="23fs/fg/img/03-ran-seq-workflow.png" alt="RNA-seq workflow diagram"
+style="zoom:67%;" /></p>
+<p>The following sections will go into more details about each step.</p>
+<h2 id="rna-seq-experiment-design"><a class="header" href="#rna-seq-experiment-design">RNA-seq experiment design</a></h2>
+<ul>
+<li>RNA-seq experiments are implemented as <strong>comparative experiments</strong></li>
+<li>RNA-seq is used to measure the <strong>relative abundance (expression)</strong> of each
+mRNA (gene) in a <u>sample</u>
+<ul>
+<li><span style="color:gray"><u>sample</u></span><span style="color:gray">: We
+cannot sequence all the RNA fragments. Instead, we randomly select about 20M
+fragments as a representation of the total RNA obtained. Note that we can
+sample multiple times. </span></li>
+</ul>
+</li>
+<li><span style="color:gray">RNA-seq can link gene expression to</span>
+<ul>
+<li><span style="color:gray">genotype</span></li>
+<li><span style="color:gray">phenotype</span></li>
+<li><span style="color:gray">treatment response </span></li>
+</ul>
+</li>
+</ul>
+<h2 id="rna-seq-read-mapping-methods"><a class="header" href="#rna-seq-read-mapping-methods">RNA-seq read mapping methods</a></h2>
+<h3 id="considerations"><a class="header" href="#considerations">Considerations</a></h3>
+<p><span style="color:gray"> Ideally, the read mapping process is as simple as
+<strong>sequencing the transcribed RNAs</strong> and then <strong>mapping the
+sequences back to the genome</strong> to identify the gene expression. </span></p>
+<p><span style="color:gray"> However, in reality, the process is much more
+complicated because <u>current sequencers can only perform faithful sequencing
+up to a couple of hundreds of bp (usually 200-800bp)</u>, and a typical mRNA is
+2-3kb long. Thus, the mRNA needs to be first chopped into fragments and then
+sequenced. When we do the mapping, we're mapping the chopped reads back to the
+genome instead of the whole spliced sequences. The existence of <u>alternative
+splicing (protein isoforms)</u> and <u>sequencing errors</u> makes the mapping
+process even more complicated. </span></p>
+<p><span style="color:gray"> While discussing the mapping process, those
+limitations and problems should be kept in mind. </span></p>
+<h4 id="how-to-map-reads-to-a-genome"><a class="header" href="#how-to-map-reads-to-a-genome">How to map reads to a genome?</a></h4>
+<ul>
+<li>Mapping algorithms must be
+<ul>
+<li>Fast
+<ul>
+<li>Thus usually find perfect or near-perfect (tolerating 1bp mismatch) match</li>
+</ul>
+</li>
+<li>Able to handle SNPs, indels and sequencing errors</li>
+</ul>
+</li>
+</ul>
+<p>We can always perform sequence alignment (here needs local
+alignment/<strong>Smith-Waterman alignment</strong>). Of course the score matrix should be
+good to determine the correct alignment. But this is slow because it requires
+quadratic efforts.</p>
+<h4 id="what-if-we-want-to-map-billions-of-reads"><a class="header" href="#what-if-we-want-to-map-billions-of-reads">What if we want to map billions of reads?</a></h4>
+<ul>
+<li><strong>Indexing method</strong>
+<ul>
+<li>Reads are aligned by <strong>index lookup</strong> instead of <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> seq comparison</li>
+<li>Usually hashed so the lookup time is much faster</li>
+<li>If lookup fails, actual sequence comparison is performed (more details on
+this in next chapter)</li>
+<li>Major aligners use the <u><strong>Burrows-Wheeler transform (BWT)</strong></u> to index
+the reference genome
+<ul>
+<li><span style="color:gray">Very small. Even for the human genome the index
+fits into 3GB RAM. </span></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Example aligners
+<ul>
+<li><a href="23fs/fg/03_transcriptomics_i.html#bowtie"><strong>bowtie</strong>, <strong>bowtie2</strong></a></li>
+<li>BWA</li>
+<li><a href="23fs/fg/03_transcriptomics_i.html#tophat2"><strong>TopHat2</strong></a></li>
+<li><a href="23fs/fg/03_transcriptomics_i.html#star"><strong>STAR</strong></a></li>
+<li>SOAP</li>
+<li>...</li>
+</ul>
+</li>
+</ul>
+<h4 id="how-to-deal-with-snps-and-indels"><a class="header" href="#how-to-deal-with-snps-and-indels">How to deal with SNPs and indels?</a></h4>
+<ul>
+<li><strong>SNPs</strong>
+<ul>
+<li><span style="color:gray">Can always be handled by performing real
+Smith-Waterman alignment but expensive </span></li>
+<li>At mismatched positions, try all possible bases and search the BWT index
+again
+<ul>
+<li>Computing effort grows exponentially</li>
+</ul>
+</li>
+<li><strong>Gapped alignment</strong>
+<ul>
+<li>Chop reads into short segments (seeds)</li>
+<li>align those seeds in a <u>mismatch-free</u> manner (typically using BWT
+index lookup again)</li>
+<li>stitch them back together</li>
+<li>Might require multiple rounds of chopping</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Indels</strong>
+<ul>
+<li>Can only be found with <strong>gapped alignment</strong> (described above), BWT lookup is
+not enough</li>
+</ul>
+</li>
+</ul>
+<h4 id="how-to-deal-with-introns-basically-very-large-insertions"><a class="header" href="#how-to-deal-with-introns-basically-very-large-insertions">How to deal with introns (basically very large insertions)?</a></h4>
+<ul>
+<li>Approaches
+<ul>
+<li>Map directly to <strong>trapscript sequences</strong> (no intron) not to the genome
+<ul>
+<li>Pro: introns are not a problem</li>
+<li>Cons: unknown genes/isoforms cannot be detected</li>
+</ul>
+</li>
+<li><strong>Spliced alignment</strong> to genome
+<ul>
+<li>Pro: finds reads from unknown gene loci or unknown isoforms</li>
+<li>Con: larger search space, potentially more false positives, wrong
+alignment to <u>pseudogenes</u></li>
+</ul>
+</li>
+<li>Combination of above</li>
+</ul>
+</li>
+<li>Difference between spliced alignment and gapped alignment
+<ul>
+<li>Gapped alignment: longer gaps means high score penalty and lower score</li>
+<li>Spliced alignment: long gaps at canonical splice-sites <u>are allowed</u>,
+but lacking canonical splice-sites or gaps elsewhere (at non-canonical
+splice sites) are penalized</li>
+</ul>
+</li>
+<li>Pseudogenes
+<ul>
+<li>associated <em>retrotransposed</em> spliced sequence of a certain gene, thus
+<em>intron-free</em>, and appears &quot;<em>exonic</em>&quot;</li>
+<li>Have almost the same sequence as the original gene</li>
+<li>Not functional because they do not have access to promotors so won't be
+transcribed</li>
+<li>Usually contain more mutations because there are no selection pressures to
+keep them intact</li>
+<li>Exonic reads will map to both the gene and its pseudogene, but likely
+preferring gene placement due to lack of mutations</li>
+<li>A spliced read could be incorrectly assigned to the pseudogene as it appears
+to be exonic, preventing higher scoring spliced alignments from being
+pursued</li>
+</ul>
+</li>
+</ul>
+<h3 id="bowtie"><a class="header" href="#bowtie">Bowtie</a></h3>
+<p><img src="23fs/fg/img/03-bowtie.png" alt="Bowtie" /></p>
+<ul>
+<li>Step-by-step backward searching the <u><strong>suffix</strong></u> of the query sequence in
+the BWT index
+<ul>
+<li>Exact matching</li>
+</ul>
+</li>
+<li>Searched suffix appears consecutively in BWT</li>
+<li>The size of range in BWT shrinks or remains the same</li>
+<li><u><strong>almost does not handle mismatches</strong></u>; a single mismatch will lead to
+<u>empty BWT</u> range / failed index lookup
+<ul>
+<li>mismatches can come from
+<ul>
+<li>Sequencing error (illumina: <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1/1000</span></span></span></span>)</li>
+<li>True variation (SNPs, human mutation rate <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4831em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord">1/1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span></span></span></span></li>
+</ul>
+</li>
+<li>mismatches are not rare events! at least 10% of &gt;100nt reads</li>
+</ul>
+</li>
+<li>Empty BWT range activates <strong>backtracking</strong>
+<ul>
+<li>All possible bases are tried at the mismatched position</li>
+<li>Gapped alignment</li>
+</ul>
+</li>
+</ul>
+<h3 id="tophat2"><a class="header" href="#tophat2">TopHat2</a></h3>
+<p><strong>Handles mismatches</strong> by gapped alignment. It <u>first</u> performs (optional)
+<u>transcriptome alignment</u> (exonic), and then performs <u>genome
+alignment</u> for the unmapped reads. The unmapped reads in the second step are
+multi-exon spanning reads and undergo <u>spliced alignment</u> by chopping the
+reads into even shorter segments and splice site identification etc.</p>
+<blockquote>
+<p>The figure is too complicated, not recommended to go into details but still
+attached here for reference. <img src="23fs/fg/img/03-tophat2.png" alt="TopHat2 pipeline" /></p>
+</blockquote>
+<h3 id="star"><a class="header" href="#star">STAR</a></h3>
+<p><strong>Direct</strong> alignment of non-contiguous sequences to the reference genome.</p>
+<ul>
+<li>First find Maximal Mappable Prefix (MMP) of the read
+<ul>
+<li>MMP is the longest prefix of the read that can be mapped to the reference
+genome</li>
+<li>MMP is found by searching the BWT index</li>
+<li>Possible to tolerate a certain degree of mismatches using extend mode</li>
+</ul>
+</li>
+<li>Stop extending MMP if MMP covers the whole read or encounters a mismatch</li>
+<li>In the second case, find the MMP of the remaining suffix of the read</li>
+<li>Repeat until the whole read is covered
+<ul>
+<li>Possible to use trim mode to get rid of A-tail or adapter sequence</li>
+</ul>
+</li>
+</ul>
+<img src="23fs/fg/img/03-star.png" alt="STAR" style="zoom:67%;" />
+<h2 id="quality-control-and-reporting-considerations-after-mapping"><a class="header" href="#quality-control-and-reporting-considerations-after-mapping">Quality control and reporting considerations after mapping</a></h2>
+<h3 id="phread-quality"><a class="header" href="#phread-quality">PHREAD quality</a></h3>
+<ul>
+<li>Each called base is given a quality score <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">Q</span></span></span></span></li>
+<li><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">Q</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">−</span><span class="mord">10</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">10</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">p</span><span class="mclose">)</span></span></span></span> (PHRED score)
+<ul>
+<li><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span></span></span></span> is the estimated probability of the base being called incorrectly</li>
+<li><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">Q</span></span></span></span> is the negative log of the probability
+<ul>
+<li>Q-score = 10: prob = 0.1</li>
+<li>Q-score = 20: prob = 0.01</li>
+<li>Q-score = 30: prob = 0.001</li>
+</ul>
+</li>
+<li><strong>Q30</strong> is often used as a cutoff for high quality reads</li>
+</ul>
+</li>
+<li>How to use: downweight the low-quality bases when computing the alignment
+score</li>
+<li><span style="color:gray">First introduced for capillary sequencers</span></li>
+<li><span style="color:gray">PHRED scores are determined by the sequencer that
+directly rates how reliable the measured signal is</span></li>
+</ul>
+<h3 id="read-trimming"><a class="header" href="#read-trimming">Read trimming</a></h3>
+<p>Not all parts of the read are useful for alignment. It is common to trim the
+reads.</p>
+<ul>
+<li>Reasons for trimming:
+<ul>
+<li>Systemetic errors of sequencer
+<ul>
+<li>Illumina sequencers have high error rate at the first few bases</li>
+<li>Basically all sequencers have increasing error rate towards the end of the
+read</li>
+</ul>
+</li>
+<li>Adapter trimming
+<ul>
+<li>If the inserted DNA/RNA fragment is too short, the read will contain part
+of the adapter (since the sequencer generally will sequence 100bp at each
+end)</li>
+<li>Can be challenging if:
+<ul>
+<li>The inserted sequence is 90-100bp -- the incorporated adapter sequence
+will only be a few bp long</li>
+<li>The read has many sequencing errors</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>3'-bias / degradation
+<ul>
+<li>The 3' end of the read is generally more likely to be degraded than the 5'
+end</li>
+<li>Depending on RNA degradation and extration protocols reads may not be
+equally distributed along the transcripts</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Trimming methods
+<ul>
+<li><strong>Hard trimming</strong>: trim a fixed number of bases from the beginning and/or
+end</li>
+<li><strong>Quality trimming</strong>: cut the end of the read as soon as the base quality
+drops below a threshold</li>
+<li><strong>Soft trimming</strong>: trim the read that cannot be aligned to the reference
+genome</li>
+</ul>
+</li>
+</ul>
+<h3 id="multiple-alignments-and-report-considerations"><a class="header" href="#multiple-alignments-and-report-considerations">Multiple alignments and report considerations</a></h3>
+<ul>
+<li>A read may have multiple valid alignments with identical or similarly good
+alignment scores
+<ul>
+<li>Aligners may use different reporting strategies:
+<ul>
+<li><strong>Randomly</strong> select one alignment from the top-scoring alignments</li>
+<li>Report <u>all</u> alignments that are <u>within delta</u> of the
+top-scoring alignment; clip if more than <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">ma</span><span class="mord mathnormal mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> alignments are found</li>
+<li>Report only alignments if they are <strong>unique</strong> (no other alignment within
+delta of the alignment score)</li>
+<li>Do not report anything if more than <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">ma</span><span class="mord mathnormal mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> valid alignments are found</li>
+<li>…</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Whether a read has a <strong>unique alignment</strong> depends on
+<ul>
+<li>the read sequence and the sequence homology of the organism</li>
+<li>the search algorithm of the aligner</li>
+</ul>
+</li>
+<li>Whether a read has a <strong>single reported alignment</strong> depends <em>additionally</em> on
+<ul>
+<li>the reporting options strategy of the aligner</li>
+</ul>
+</li>
+</ul>
+<h2 id="expression-quantification"><a class="header" href="#expression-quantification">Expression quantification</a></h2>
+<ul>
+<li>Expression quantification on
+<ul>
+<li><strong>Gene level</strong>
+<ul>
+<li>Reads belong to a gene locus</li>
+</ul>
+</li>
+<li><strong>Isoform level</strong>
+<ul>
+<li>Reads belong to an isoform</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="how-to-count-reads"><a class="header" href="#how-to-count-reads">How to count reads?</a></h3>
+<ul>
+<li><strong>Unique mapped reads</strong>
+<ul>
+<li>Multi-reads are ignored – potentially biased quantification</li>
+</ul>
+</li>
+<li><strong>All mapped reads</strong>
+<ul>
+<li>Assignment of multi-reads need abundance estimation of overlapped
+genes/isoforms</li>
+</ul>
+</li>
+</ul>
+<p><img src="23fs/fg/img/03-read-counting.png" alt="Read counting" /></p>
+<h4 id="em-estimation"><a class="header" href="#em-estimation">EM estimation</a></h4>
+<ul>
+<li>General steps
+<ol>
+<li>Estimate abundances based on <u>uniquely mapping reads only</u></li>
+<li>For each multi-read, divide it between the transcripts to which it maps, proportionally to their abundances estimated in the first step</li>
+<li>Recompute abundances based on updated counts for each transcript
+r.</li>
+<li>Continue with Step 2</li>
+</ol>
+</li>
+<li>Model the sequencing and analysis process with a likelihood function</li>
+<li>E-step: Compute expected read counts given current expression levels</li>
+<li>M-step: Compute expression values maximizing likelihood given expected read counts</li>
+</ul>
+<h4 id="alignment-free-rna-seq-quantification"><a class="header" href="#alignment-free-rna-seq-quantification">Alignment-free RNA-seq quantification</a></h4>
+<p>Instead of building BWT, we build hashed k-mer index based on known
+transcriptome, and search the k-mers in the reads to map and compute abundance.</p>
+<p>Easier to understand through side-by-side comparison with the traditional
+alignment dependent method:</p>
+<p><img src="23fs/fg/img/03-kmer.png" alt="Alignment dependent v.s. alignment free" /></p>
+<p>While allocating k-mer to transcript, we try to make each transcript covered
+as uniformly as possible.</p>
+<ul>
+<li>Pros
+<ul>
+<li>Accurate and fast in quantifying <strong>KNOWN TRANSCRIPTS</strong></li>
+<li>Counts can be aggregated to get gene-level quantification</li>
+</ul>
+</li>
+<li>Cons
+<ul>
+<li>Less well annotated genomes – less accurate results</li>
+<li>No alignments – no information about SNPs</li>
+<li>Transcript coverage is not uniform</li>
+</ul>
+</li>
+</ul>
+<h3 id="normalization"><a class="header" href="#normalization">Normalization</a></h3>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            MathJax.Hub.Register.StartupHook('End', function() {
+                window.setTimeout(window.print, 100);
+            });
+        });
+        </script>
+
+    </div>
+    </body>
+</html>
