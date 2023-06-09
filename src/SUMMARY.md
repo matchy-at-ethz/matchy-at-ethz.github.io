@@ -18,7 +18,7 @@
   - [Modern Genomics I]()
   - [Modern Genomics II](./23fs/fg/02_modern_genomics_ii.md)
   - [Transcriptomics I](./23fs/fg/03_transcriptomics_i.md)
-  - [Transcriptomics II]()
+  - [Transcriptomics II](./23fs/fg/04_transcriptomics_ii.md)
   - [MicroRNAs and other small RNAs]()
   - [Proteomics]()
   - [Metabolomics]()
