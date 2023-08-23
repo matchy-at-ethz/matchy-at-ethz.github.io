@@ -71,7 +71,7 @@ def titlize(word, fname):
 
 def generate_toc(dir, sub_dir):
     toc = ""
-    for file in os.listdir(os.path.join("src", dir, sub_dir)):
+    for file in os.listdir(os.path.join(dir, sub_dir)):
         if file[0].isdigit():
             fname = [x for x in file[2:].replace('.md', '').split('_') if x]
             # remove empty strings in fname
@@ -79,30 +79,39 @@ def generate_toc(dir, sub_dir):
             fname = ' '.join([titlize(word, fname) for word in fname])
             toc += f"* [{file[:2]}. {fname}]({file})\n"
         # else if the file is a file
-        elif os.path.isfile(os.path.join("src", dir, sub_dir, file)):
+        elif os.path.isfile(os.path.join(dir, sub_dir, file)):
             main_file = file
         else:
             continue
-    main_file_path = os.path.join("src", dir, sub_dir, main_file)
+    main_file_path = os.path.join(dir, sub_dir, main_file)
     with open(main_file_path, "r") as f:
         content = f.read()
-    # if there is already a TOC, remove it
-    content = re.sub(r"<!-- toc -->.*<!-- toc -->",
-                     f"<!-- toc -->\n{toc}<!-- toc -->", content, flags=re.DOTALL)
-    with open(main_file_path, "w") as f:
-        f.write(content)
+    # get the current TOC
+    curr_toc = re.search(r"<!-- toc -->\n(.*)<!-- toc -->", content, flags=re.DOTALL).group(1)
+    if curr_toc == toc:
+        return
+    else:
+        content = re.sub(r"<!-- toc -->.*<!-- toc -->",
+                        f"<!-- toc -->\n{toc}<!-- toc -->", content, flags=re.DOTALL)
+        with open(main_file_path, "w") as f:
+            f.write(content)
 
 def main():
-    for _, dirs, _ in os.walk("src"):
+    base_dir = os.path.abspath(os.path.join(os.getcwd(), '../../src'))
+    for _, dirs, _ in os.walk(base_dir):
         for dir in dirs:
-            for _, sub_dirs, _ in os.walk(os.path.join("src", dir)):
+            for _, sub_dirs, _ in os.walk(os.path.join(base_dir, dir)):
                 for sub_dir in sub_dirs:
-                    generate_toc(dir, sub_dir)
+                    # skip for img
+                    if sub_dir == "img":
+                        continue
+                    generate_toc(os.path.join(base_dir, dir), sub_dir)
 
 if __name__ == '__main__':
     if len(sys.argv) > 1: # we check if we received any argument
         if sys.argv[1] == "supports":
             # then we are good to return an exit status code of 0, since the other argument will just be the renderer's name
             sys.exit(0)
-
-    main()
+    else:
+        main()
+        sys.exit(0)
