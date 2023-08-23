@@ -70,3 +70,55 @@ Spark has transformations specifically tailored for RDDs of key-value pairs!
   * matches the pairs on both sides that have the same **key**
   * outputs, for **each** match, **an output pair** with that shared key and a **tuple** with the **two values** from each side.
   * If there are multiple values with the same key on any side (or both), then all possible combinations are output.
+* `subtractByKey`
+
+## Types of actions!
+
+### Gather output locally
+
+By locally we mean in the client machine memory!
+
+* `collect`
+  * downloads all values of an RDD on the client machine and output as a local list
+  * **only use if the output is small enough to fit in memory**
+* `count`
+  * computes (in parallel) the total number of values (count duplicates!) in the input RDD
+  * *safe for large RDDs bcuz only returns a smol integer*
+* `countByValue`
+  * computes (in parallel) the number of times each <u>distinct</u> value appears in the input RDD
+  * **only use if the output is small enough to fit in memory**
+* `take`
+  * returns the **first** `n` values of the input RDD
+* `top`
+  * returns the **last** `n` values of the input RDD
+* `takeSample`
+  * returns a random sample of `n` values from the input RDD
+* `reduce`
+  * input: a (normally associative and commutative) binary operator
+  * return: a new RDD with the operator invoked and chained on all values of the input RDD
+    * (v1 + v2 + ... + vn if + is the operator) and outputs the resulting value.
+  * no key!
+  * output is a single value?
+
+### Write output
+
+* `saveAsTextFile`
+* `saveAsObjectFile`
+
+### Actions for Pair RDDs
+
+* `countByKey`
+  * outputs locally each key together with the number of values in the input taht are associated with this key
+  * a local list of key-value pairs
+  * **only use if the the input RDD does not have lots of distinct keys**
+* `lookup`
+  * get the value or values associated with a given key
+
+## Physical Architecture
+
+* narrow-dependency: computation involves <u>only a single input</u>
+* wide-dependency: computation involves multiple inputs
+
+**Stage**: chain of narrow dependency transformations (`map`, `filter`, `flatMap`) etc (== phase in MapReduce)
+
+![Relationship between transformation, stage, task and job](img/20230823174842.png)
