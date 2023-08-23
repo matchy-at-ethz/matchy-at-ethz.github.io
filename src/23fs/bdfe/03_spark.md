@@ -122,3 +122,12 @@ By locally we mean in the client machine memory!
 **Stage**: chain of narrow dependency transformations (`map`, `filter`, `flatMap`) etc (== phase in MapReduce)
 
 ![Relationship between transformation, stage, task and job](img/20230823174842.png)
+
+## Optimization
+
+* **Pinning RDDs**
+  * Everytime an <u>action is triggered</u>, all the computations of the "reverse transitive closure" (i.e. all theway up the DAG thru the reverted edges) are set into motion.
+  * The intermediate RDDs in the **shared subgraph** is worthy to be **pinned** (**persisted**) in memory and/or on disk.
+* **Pre-partitioning**
+  * If `Spark` knows that the data is *already* located where it should be, it will not perform shuffle
+  * Example: when data is sorted before being grouped with the same keys after sorting
