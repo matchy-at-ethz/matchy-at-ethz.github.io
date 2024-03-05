@@ -7,10 +7,11 @@
 # 22HS
 
 - [Computational Biology]()
+- [Data Mining I]()
 
 ---
 
-# 23FS
+# 23FS + HS
 
 - [Mobile Health and Activity Monitoring](./23fs/mham/mobile_health_and_activity_monitoring.md)
   - [Introduction]()
@@ -26,3 +27,10 @@
   - [Protein Networks]()
   - [Epigenomics and Gene Regulation]()
   - [Qualitiy Control and Standards]()
+
+---
+
+# 24FS
+
+- [Biofluiddynamics]()
+- [Synthetic Biology I]()
