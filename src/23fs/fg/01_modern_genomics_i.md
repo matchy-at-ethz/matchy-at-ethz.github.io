@@ -19,7 +19,7 @@ graph LR
 Efficient sequencing technology arrived rather late. Initially the sequencing process was cumbersome and radioactive.
 
 - 1975: "dideoxy" DNA sequencing (Sanger)
-- 1977: first genome (<u>bacteriophage $\phi X 174$</u>)
+- 1977: first genome (<u>bacteriophage \\( \phi X 174 \\) </u>)
 - 1995: first <u>cell</u> (Haemophilus influenzae)
 - 1998: first animal (Caenorhabditis elegans)
 - 2001: Homo sapiens
