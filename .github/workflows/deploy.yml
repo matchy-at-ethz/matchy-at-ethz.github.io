@@ -14,32 +14,29 @@ jobs:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
-    - name: Install mdbook
+    - name: Create executable directory
       run: |
         mkdir mdbook
-        curl -sSL https://github.com/rust-lang/mdBook/releases/download/v0.4.28/mdbook-v0.4.28-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=./mdbook
         echo `pwd`/mdbook >> $GITHUB_PATH
+    - name: Install mdbook
+      run: |
+        curl -sSL https://github.com/rust-lang/mdBook/releases/download/v0.4.36/mdbook-v0.4.36-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=./mdbook
     - name: Install mdbook-katex
       run: |
-        mkdir mdbook-katex
-        curl -sSL https://github.com/lzanini/mdbook-katex/releases/download/v0.3.10/mdbook-katex-v0.3.10-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=./mdbook-katex
-        echo `pwd`/mdbook-katex >> $GITHUB_PATH
+        curl -sSL https://github.com/lzanini/mdbook-katex/releases/download/v0.5.9/mdbook-katex-v0.5.9-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=./mdbook
     - name: Install mdbook-toc
       run: |
-        mkdir mdbook-toc
-        curl -sSL https://github.com/badboy/mdbook-toc/releases/download/0.11.2/mdbook-toc-0.11.2-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=./mdbook-toc
-        echo `pwd`/mdbook-toc >> $GITHUB_PATH
+        curl -sSL https://github.com/badboy/mdbook-toc/releases/download/0.14.2/mdbook-toc-0.14.2-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=./mdbook
     - name: Install mdbook-mermaid
       run: |
-        mkdir mdbook-mermaid
-        curl -sSL https://github.com/badboy/mdbook-mermaid/releases/download/v0.13.0/mdbook-mermaid-v0.13.0-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=./mdbook-mermaid
-        curl -sSL https://raw.githubusercontent.com/badboy/mdbook-mermaid/v0.13.0/src/bin/assets/mermaid-init.js -o mermaid-init.js
-        curl -sSL https://raw.githubusercontent.com/badboy/mdbook-mermaid/v0.13.0/src/bin/assets/mermaid.min.js -o mermaid.min.js
-        echo `pwd`/mdbook-mermaid >> $GITHUB_PATH
+        curl -sSL https://github.com/badboy/mdbook-mermaid/releases/download/v0.13.0/mdbook-mermaid-v0.13.0-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=./mdbook
+        curl -sSL https://raw.githubusercontent.com/badboy/mdbook-mermaid/main/src/bin/assets/mermaid-init.js -o mermaid-init.js
+        curl -sSL https://raw.githubusercontent.com/badboy/mdbook-mermaid/main/src/bin/assets/mermaid.min.js -o mermaid.min.js
     - name: Deploy GitHub Pages
       run: |
         # This assumes your book is in the root of your repository.
         # Just add a `cd` here if you need to change to another directory.
+        mdbook-mermaid install .
         mdbook build
         git worktree add gh-pages
         git config user.name "Deploy from CI"
@@ -49,6 +46,7 @@ jobs:
         git update-ref -d refs/heads/gh-pages
         rm -rf *
         mv ../book/html/* .
+        ls
         git add .
         git commit -m "Deploy $GITHUB_SHA to gh-pages"
         git push --force --set-upstream origin gh-pages
