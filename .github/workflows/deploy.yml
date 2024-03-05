@@ -29,6 +29,13 @@ jobs:
         mkdir mdbook-toc
         curl -sSL https://github.com/badboy/mdbook-toc/releases/download/0.11.2/mdbook-toc-0.11.2-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=./mdbook-toc
         echo `pwd`/mdbook-toc >> $GITHUB_PATH
+    - name: Install mdbook-mermaid
+      run: |
+        mkdir mdbook-mermaid
+        curl -sSL https://github.com/badboy/mdbook-mermaid/releases/download/v0.13.0/mdbook-mermaid-v0.13.0-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=./mdbook-mermaid
+        curl -sSL https://raw.githubusercontent.com/badboy/mdbook-mermaid/v0.13.0/src/bin/assets/mermaid-init.js -o mermaid-init.js
+        curl -sSL https://raw.githubusercontent.com/badboy/mdbook-mermaid/v0.13.0/src/bin/assets/mermaid.min.js -o mermaid.min.js
+        echo `pwd`/mdbook-mermaid >> $GITHUB_PATH
     - name: Deploy GitHub Pages
       run: |
         # This assumes your book is in the root of your repository.
