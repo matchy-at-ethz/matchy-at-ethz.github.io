@@ -1,5 +1,7 @@
 # Functional Genomics
 
+A course collectively taught by multiple professors. Multiple-choice exam, lots of memorization.
+
 ## Table of Contents
 
 <!-- toc -->

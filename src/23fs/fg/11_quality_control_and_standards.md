@@ -1,1 +1,1 @@
-# Qualitiy Control and Standards
+# Quality Control and Standards

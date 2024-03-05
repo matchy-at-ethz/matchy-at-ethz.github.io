@@ -8,6 +8,7 @@ title = "Notes @ ETH Zürich"
 [output.katex]
 
 [output.html]
+additional-js = ["mermaid.min.js", "mermaid-init.js"]
 mathjax-support = true
 
 [output.html.fold]
@@ -16,6 +17,9 @@ level = 0
 
 [output.pytoc]
 command = "python3 ../../scripts/autogen-toc.py"
+
+[preprocessor.mermaid]
+command = "mdbook-mermaid"
 
 [preprocessor.katex]
 renderers = ["html"]
