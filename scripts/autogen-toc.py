@@ -87,7 +87,9 @@ def generate_toc(dir, sub_dir):
     with open(main_file_path, "r") as f:
         content = f.read()
     # get the current TOC
-    curr_toc = re.search(r"<!-- toc -->\n(.*)<!-- toc -->", content, flags=re.DOTALL).group(1)
+    curr_toc = re.search(r"<!-- toc -->\n(.*)<!-- toc -->", content, flags=re.DOTALL)
+    if curr_toc:
+        curr_toc = curr_toc.group(1)
     if curr_toc == toc:
         return
     else:
