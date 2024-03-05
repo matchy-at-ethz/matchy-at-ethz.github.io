@@ -224,7 +224,7 @@ This section likely won't be covered in the exam.
 >   - seq quality score included
 >   - but incomplete: legacy & newer data not available
 >   - gigantic in size
-> - Sequencing projects: [GOLD (Genomes OnLine Database)](genomesonline.org)
+> - Sequencing projects: [GOLD (Genomes OnLine Database)](https://gold.jgi.doe.gov/)
 >   - keep track of "who is sequencing what" and responsible researchers (contacts), funding sources, sequencing centers etc
 > - Genome browsers
 >   - Display features (genes, transcripts...) on the genomes, show annotations (conflicts, variants also included), homolog search
