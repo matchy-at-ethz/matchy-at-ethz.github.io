@@ -17,7 +17,7 @@ Courses are organized by semester and year. The course notes are organized by le
 
 - [Mobile Health and Activity Monitoring](./23fs/mham/mobile_health_and_activity_monitoring.md)
 - [Functional Genomics](./23fs/fg/functional_genomics.md)
-- Introduction to Machine Learning
+- [Introduction to Machine Learning](./23fs/iml/introduction_to_machine_learning.md)
 - Big Data for Engineers
 - Statistical Models in Computational Biology
 
