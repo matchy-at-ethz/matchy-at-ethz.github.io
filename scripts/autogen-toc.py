@@ -71,6 +71,7 @@ def titlize(word, fname):
 
 def generate_toc(dir, sub_dir):
     toc = ""
+    main_file = ""
     for file in os.listdir(os.path.join(dir, sub_dir)):
         if file[0].isdigit():
             fname = [x for x in file[2:].replace('.md', '').split('_') if x]
@@ -83,6 +84,9 @@ def generate_toc(dir, sub_dir):
             main_file = file
         else:
             continue
+    # do nothing if main_file is not found (i.e. no file needs TOC)
+    if main_file == "":
+        return
     main_file_path = os.path.join(dir, sub_dir, main_file)
     with open(main_file_path, "r") as f:
         content = f.read()
