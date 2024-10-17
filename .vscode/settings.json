@@ -1,0 +1,6 @@
+{
+  "markdownlint.config": {
+    "MD042": false, // no emtpy link
+    "MD025": false // single title h1
+  }
+}

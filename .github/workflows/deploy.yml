@@ -1,0 +1,49 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # To push a branch
+      pull-requests: write  # To create a PR from that branch
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - name: Create executable directory
+      run: |
+        mkdir mdbook
+        echo `pwd`/mdbook >> $GITHUB_PATH
+    - name: Install mdbook
+      run: |
+        curl -sSL https://github.com/rust-lang/mdBook/releases/download/v0.4.36/mdbook-v0.4.36-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=./mdbook
+    - name: Install mdbook-toc
+      run: |
+        curl -sSL https://github.com/badboy/mdbook-toc/releases/download/0.14.2/mdbook-toc-0.14.2-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=./mdbook
+    - name: Install mdbook-mermaid
+      run: |
+        curl -sSL https://github.com/badboy/mdbook-mermaid/releases/download/v0.13.0/mdbook-mermaid-v0.13.0-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=./mdbook
+        curl -sSL https://raw.githubusercontent.com/badboy/mdbook-mermaid/main/src/bin/assets/mermaid-init.js -o mermaid-init.js
+        curl -sSL https://raw.githubusercontent.com/badboy/mdbook-mermaid/main/src/bin/assets/mermaid.min.js -o mermaid.min.js
+    - name: Deploy GitHub Pages
+      run: |
+        # This assumes your book is in the root of your repository.
+        # Just add a `cd` here if you need to change to another directory.
+        mdbook-mermaid install .
+        mdbook build
+        git worktree add gh-pages
+        git config user.name "Deploy from CI"
+        git config user.email ""
+        cd gh-pages
+        # Delete the ref to avoid keeping history.
+        git update-ref -d refs/heads/gh-pages
+        rm -rf *
+        mv ../book/html/* .
+        git add .
+        git add --force mermaid-init.js mermaid.min.js
+        git commit -m "Deploy $GITHUB_SHA to gh-pages"
+        git push --force --set-upstream origin gh-pages
