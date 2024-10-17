@@ -88,11 +88,14 @@ def generate_toc(dir: pathlib.Path, toc_file: str, chapter_files: list[str]) -> 
     curr_toc = re.search(r"<!-- toc -->\n(.*)<!-- toc -->", content, flags=re.DOTALL)
     if curr_toc:
         curr_toc = curr_toc.group(1)
+    else:
+        # no TOC found, do nothing
+        return
     if curr_toc == toc:
         return
     else:
         content = re.sub(
-            r"<!-- toc -->.*<!-- toc -->",
+            r"<!-- toc -->\n(.*)<!-- toc -->",
             f"<!-- toc -->\n{toc}<!-- toc -->",
             content,
             flags=re.DOTALL,
