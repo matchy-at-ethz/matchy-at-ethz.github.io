@@ -4,10 +4,11 @@
 # for all other files that start with number, use their file name as the link text, and insert them into the TOC file, in the order of their file name
 # the first underscore in the file name is replaced with ". ", and the rest of the underscores are replaced with spaces
 
-import json
 import sys
 import os
 import re
+import pathlib
+
 
 # hash table for words that should not be capitalized
 # for example, "of" should not be capitalized
@@ -59,6 +60,7 @@ htable_strict = {
     "rnas": "RNAs",
 }
 
+
 def titlize(word, fname):
     if htable_strict.get(word.lower()):
         return htable_strict.get(word.lower())
@@ -69,25 +71,17 @@ def titlize(word, fname):
     else:
         return word.capitalize()
 
-def generate_toc(dir, sub_dir):
+
+def generate_toc(dir: pathlib.Path, toc_file: str, chapter_files: list[str]) -> None:
     toc = ""
-    main_file = ""
-    for file in os.listdir(os.path.join(dir, sub_dir)):
-        if file[0].isdigit():
-            fname = [x for x in file[2:].replace('.md', '').split('_') if x]
-            # remove empty strings in fname
-            # make sure the first letter of each word is capitalized
-            fname = ' '.join([titlize(word, fname) for word in fname])
-            toc += f"* [{file[:2]}. {fname}]({file})\n"
-        # else if the file is a file
-        elif os.path.isfile(os.path.join(dir, sub_dir, file)):
-            main_file = file
-        else:
-            continue
+    for file in chapter_files:
+        fname = [x for x in file[2:].replace(".md", "").split("_") if x]
+        # remove empty strings in fname
+        # make sure the first letter of each word is capitalized
+        fname = " ".join([titlize(word, fname) for word in fname])
+        toc += f"* [{file[:2]}. {fname}]({file})\n"
     # do nothing if main_file is not found (i.e. no file needs TOC)
-    if main_file == "":
-        return
-    main_file_path = os.path.join(dir, sub_dir, main_file)
+    main_file_path = dir / toc_file
     with open(main_file_path, "r") as f:
         content = f.read()
     # get the current TOC
@@ -97,24 +91,58 @@ def generate_toc(dir, sub_dir):
     if curr_toc == toc:
         return
     else:
-        content = re.sub(r"<!-- toc -->.*<!-- toc -->",
-                        f"<!-- toc -->\n{toc}<!-- toc -->", content, flags=re.DOTALL)
+        content = re.sub(
+            r"<!-- toc -->.*<!-- toc -->",
+            f"<!-- toc -->\n{toc}<!-- toc -->",
+            content,
+            flags=re.DOTALL,
+        )
         with open(main_file_path, "w") as f:
             f.write(content)
 
-def main():
-    base_dir = os.path.abspath(os.path.join(os.getcwd(), '../../src'))
-    for _, dirs, _ in os.walk(base_dir):
-        for dir in dirs:
-            for _, sub_dirs, _ in os.walk(os.path.join(base_dir, dir)):
-                for sub_dir in sub_dirs:
-                    # skip for img
-                    if sub_dir == "img":
-                        continue
-                    generate_toc(os.path.join(base_dir, dir), sub_dir)
 
-if __name__ == '__main__':
-    if len(sys.argv) > 1: # we check if we received any argument
+IGNORES = [
+    "README.md",
+    "SUMMARY.md",
+]
+
+
+def is_chapter(file: str) -> bool:
+    return file[0].isdigit() and file not in IGNORES and file.endswith(".md")
+
+
+def is_toc(file: str) -> bool:
+    return file not in IGNORES and file.endswith(".md")
+
+
+def main():
+    PROJECT_ROOT = pathlib.Path(__file__).parent.parent
+    SRC_DIR = PROJECT_ROOT / "src"
+
+    to_process: list[pathlib.Path] = []
+    to_process.append(SRC_DIR)
+    while len(to_process) > 0:
+        curr = to_process.pop()
+        paths = os.listdir(curr)
+        dirs = [curr / p for p in paths if (curr / p).is_dir()]
+        for d in dirs:
+            to_process.append(curr / d)
+        files = [p for p in paths if (curr / p).is_file()]
+        chapter_files: list[str] = []
+        toc_file: str | None = None
+
+        for f in files:
+            if is_chapter(f):
+                chapter_files.append(f)
+            elif is_toc(f):
+                toc_file = f
+        if len(chapter_files) == 0 or toc_file is None:
+            continue
+        generate_toc(curr, toc_file, chapter_files)
+
+
+if __name__ == "__main__":
+    if len(sys.argv) > 1:  # we check if we received any argument
         if sys.argv[1] == "supports":
             # then we are good to return an exit status code of 0, since the other argument will just be the renderer's name
             sys.exit(0)
