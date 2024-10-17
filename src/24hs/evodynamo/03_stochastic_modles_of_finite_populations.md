@@ -1,4 +1,4 @@
-# Stochastic Modles of Finite Populations
+# Stochastic Models of Finite Populations
 
 ## Key Concepts
 

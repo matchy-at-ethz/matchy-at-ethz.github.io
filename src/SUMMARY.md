@@ -55,7 +55,7 @@
 - [Evolutionary Dynamics](./24hs/evodynamo/evolutionary_dynamics.md)
   - [What is Evolution?](./24hs/evodynamo/01_what_is_evolution.md)
   - [Quasispecies](./24hs/evodynamo/02_quasispecies.md)
-  - [Stochastic Modles of Finite Populations](./24hs/evodynamo/03_stochastic_modles_of_finite_populations.md)
+  - [Stochastic Models of Finite Populations](./24hs/evodynamo/03_stochastic_modles_of_finite_populations.md)
   - [Evolutionary Dynamics of Cancer](./24hs/evodynamo/04_evolutionary_dynamics_of_cancer.md)
   - [Cancer Progression: The Speed of Adaptation]()
   - [Diffusion Theory]()
