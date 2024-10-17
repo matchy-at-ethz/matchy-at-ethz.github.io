@@ -9,6 +9,10 @@
 - [Computational Biology]()
 - [Data Mining I](./22hs/dm1/data_mining_i.md)
   - [Metrics](./22hs/dm1/01_metrics.md)
+  - [Classification](./22hs/dm1/02_classification.md)
+  - [Clustering](./22hs/dm1/03_clustering.md)
+  - [Feature Selection](./22hs/dm1/04_feature_selection.md)
+  - [Applications in Computational Biology](./22hs/dm1/05_applications_in_computational_biology.md)
 
 ---
 
@@ -28,6 +32,14 @@
   - [Protein Networks]()
   - [Epigenomics and Gene Regulation]()
   - [Qualitiy Control and Standards]()
+- [Big Data for Engineers](./23fs/bdfe/big_data_for_engineers.md)
+  - [Azure Blob Storage](./23fs/bdfe/01_azure_blob_storage.md)
+  - [Hadoop](./23fs/bdfe/02_hadoop.md)
+  - [Spark](./23fs/bdfe/03_spark.md)
+  - [JSONiq](./23fs/bdfe/04_jsoniq.md)
+  - [HBase (Wide Column Store)](./23fs/bdfe/05_hbase_(wide_column_store).md)
+  - [MapReduce](./23fs/bdfe/06_mapreduce.md)
+  - [YARN](./23fs/bdfe/07_yarn.md)
 
 ---
 

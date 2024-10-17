@@ -9,7 +9,7 @@ Courses are organized by semester and year. The course notes are organized by le
 ### 22HS
 
 - Computational Biology
-- Data Mining I
+- [Data Mining I](./22hs/dm1/data_mining_i.md)
 - Information Systems for Engineers (Won't be covered here)
 - Computational Systems Biology
 

@@ -10,4 +10,8 @@ The course was _really_ well organized and the concepts were explained _really_ 
 
 <!-- toc -->
 * [01. Metrics](01_metrics.md)
+* [02. Classification](02_classification.md)
+* [03. Clustering](03_clustering.md)
+* [04. Feature Selection](04_feature_selection.md)
+* [05. Applications in Computational Biology](05_applications_in_computational_biology.md)
 <!-- toc -->
