@@ -7,7 +7,8 @@
 # 22HS
 
 - [Computational Biology]()
-- [Data Mining I]()
+- [Data Mining I](./22hs/dm1/data_mining_i.md)
+  - [Metrics](./22hs/dm1/01_metrics.md)
 
 ---
 

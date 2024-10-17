@@ -10,7 +10,7 @@ Courses are organized by semester and year. The course notes are organized by le
 
 - Computational Biology
 - Data Mining I
-- Information Systems for Engineers
+- Information Systems for Engineers (Won't be covered here)
 - Computational Systems Biology
 
 ### 23FS + HS
@@ -18,7 +18,7 @@ Courses are organized by semester and year. The course notes are organized by le
 - [Mobile Health and Activity Monitoring](./23fs/mham/mobile_health_and_activity_monitoring.md)
 - [Functional Genomics](./23fs/fg/functional_genomics.md)
 - Introduction to Machine Learning
-- Big Data for Engineers
+- Big Data for Engineers (Won't be covered here)
 - Statistical Models in Computational Biology
 
 No courses (except for seminar) taken in 23HS since I was doing an internship at Roche.
@@ -27,3 +27,11 @@ No courses (except for seminar) taken in 23HS since I was doing an internship at
 
 - Biofluiddynamics
 - Synthetic Biology I
+
+### 24HS
+
+- Computer Architecture
+- Applied Bioinformatics: Microbiomes
+- Algorithms and Data Structures for Population Scale Genomics (Audit; _Probably won't be covered here_)
+- Probabilistic Artificial Intelligence (Audit; _Probably won't be covered here_)
+- Evolutionary Dynamics
