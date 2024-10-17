@@ -9,6 +9,10 @@
 - [Computational Biology]()
 - [Data Mining I](./22hs/dm1/data_mining_i.md)
   - [Metrics](./22hs/dm1/01_metrics.md)
+  - [Classification](./22hs/dm1/02_classification.md)
+  - [Clustering](./22hs/dm1/03_clustering.md)
+  - [Feature Selection](./22hs/dm1/04_feature_selection.md)
+  - [Applications in Computational Biology](./22hs/dm1/05_applications_in_computational_biology.md)
 
 ---
 
@@ -28,6 +32,9 @@
   - [Protein Networks]()
   - [Epigenomics and Gene Regulation]()
   - [Qualitiy Control and Standards]()
+- [Introduction to Machine Learning](./23fs/iml/introduction_to_machine_learning.md)
+  - [Introduction](./23fs/iml/01_introduction.md)
+  - [Linear Regression](./23fs/iml/02_regression.md)
 
 ---
 

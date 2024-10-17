@@ -9,7 +9,7 @@ Courses are organized by semester and year. The course notes are organized by le
 ### 22HS
 
 - Computational Biology
-- Data Mining I
+- [Data Mining I](./22hs/dm1/data_mining_i.md)
 - Information Systems for Engineers (Won't be covered here)
 - Computational Systems Biology
 
@@ -17,7 +17,7 @@ Courses are organized by semester and year. The course notes are organized by le
 
 - [Mobile Health and Activity Monitoring](./23fs/mham/mobile_health_and_activity_monitoring.md)
 - [Functional Genomics](./23fs/fg/functional_genomics.md)
-- Introduction to Machine Learning
+- [Introduction to Machine Learning](./23fs/iml/introduction_to_machine_learning.md)
 - Big Data for Engineers (Won't be covered here)
 - Statistical Models in Computational Biology
 
