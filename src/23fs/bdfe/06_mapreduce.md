@@ -7,9 +7,13 @@ The types of the keys and values are known at compile-time (<u>statically</u>), 
 ## Combine
 
 In addition to the map function and the reduce function, the
-user can supply a combine function. This combine function can then be called by the system during the map phase as many times as it sees fit to “compress” the intermediate key-value pairs. Strategically, the combine function is likely to be called at every flush of key-value pairs to a Sequence File on disk, and at every compaction of several Sequence Files into one.
-However, there is no guarantee that the combine function will be
-called at all, and there is also no guarantee on how many times it will be called. Thus, if the user provides a combine function, it is important that they think carefully about a combine function that does not affect the correctness of the output data. In fact, in most of the cases, the combine function will be identical to the reduce function, which is generally possibly if the intermediate key-value pairs have the same type as the output key-value pairs, and the reduce function is both associative and commutative. This is the case for summing values as well as for taking the maximum or the minimum, but not for an unweighted average (why?). As a reminder, associativity means that (a +b)+c = a +(b +c) and commutativity means that a +b = b +a.
+user can supply a combine function. This combine function can then be called by the system during the map phase as many times as it sees fit to “compress” the intermediate key-value pairs.
+
+Strategically, the combine function is likely to be called at every flush of key-value pairs to a Sequence File on disk, and at every compaction of several Sequence Files into one.
+
+However, there is no guarantee that the combine function will becalled at all, and there is also no guarantee on how many times it will be called. Thus, if the user provides a combine function, it is important that they think carefully about a combine function that does not affect the correctness of the output data.
+
+In fact, in most of the cases, the combine function will be identical to the reduce function, which is generally possibly if the intermediate key-value pairs have the same type as the output key-value pairs, and the reduce function is both associative and commutative. This is the case for summing values as well as for taking the maximum or the minimum, but not for an unweighted average (why?). As a reminder, associativity means that \\( (a +b)+c = a +(b +c) \\) and commutativity means that \\( a +b = b +a \\).
 
 ## Terms!!
 
