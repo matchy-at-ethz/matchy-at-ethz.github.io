@@ -20,6 +20,14 @@
 
 - [Mobile Health and Activity Monitoring](./23fs/mham/mobile_health_and_activity_monitoring.md)
   - [Introduction]()
+- [Big Data for Engineers](./23fs/bdfe/big_data_for_engineers.md)
+  - [Azure Blob Storage](./23fs/bdfe/01_azure_blob_storage.md)
+  - [Hadoop](./23fs/bdfe/02_hadoop.md)
+  - [Spark](./23fs/bdfe/03_spark.md)
+  - [JSONiq](./23fs/bdfe/04_jsoniq.md)
+  - [HBase (Wide Column Store)](./23fs/bdfe/05_hbase_(wide_column_store).md)
+  - [MapReduce](./23fs/bdfe/06_mapreduce.md)
+  - [YARN](./23fs/bdfe/07_yarn.md)
 - [Functional Genomics](./23fs/fg/functional_genomics.md)
   - [Modern Genomics I](./23fs/fg/01_modern_genomics_i.md)
   - [Modern Genomics II](./23fs/fg/02_modern_genomics_ii.md)
@@ -32,14 +40,6 @@
   - [Protein Networks]()
   - [Epigenomics and Gene Regulation]()
   - [Qualitiy Control and Standards]()
-- [Big Data for Engineers](./23fs/bdfe/big_data_for_engineers.md)
-  - [Azure Blob Storage](./23fs/bdfe/01_azure_blob_storage.md)
-  - [Hadoop](./23fs/bdfe/02_hadoop.md)
-  - [Spark](./23fs/bdfe/03_spark.md)
-  - [JSONiq](./23fs/bdfe/04_jsoniq.md)
-  - [HBase (Wide Column Store)](./23fs/bdfe/05_hbase_(wide_column_store).md)
-  - [MapReduce](./23fs/bdfe/06_mapreduce.md)
-  - [YARN](./23fs/bdfe/07_yarn.md)
 
 ---
 
@@ -47,3 +47,22 @@
 
 - [Biofluiddynamics]()
 - [Synthetic Biology I]()
+
+# 24HS
+
+- [Computer Architecture]()
+- [Applied Bioinformatics: Microbiomes]()
+- [Evolutionary Dynamics](./24hs/evodynamo/evolutionary_dynamics.md)
+  - [What is Evolution?](./24hs/evodynamo/01_what_is_evolution.md)
+  - [Quasispecies](./24hs/evodynamo/02_quasispecies.md)
+  - [Stochastic Modles of Finite Populations](./24hs/evodynamo/03_stochastic_modles_of_finite_populations.md)
+  - [Evolutionary Dynamics of Cancer](./24hs/evodynamo/04_evolutionary_dynamics_of_cancer.md)
+  - [Cancer Progression: The Speed of Adaptation]()
+  - [Diffusion Theory]()
+  - [Evolutionary Game Theory]()
+  - [Evolutionary Games in Finite Populations]()
+  - [Spatial Models for the Evolution of Solid Tumors]()
+  - [Branching Processes]()
+  - [Evolutionary Escape]()
+  - [Coalescent Theory]()
+  - [Tumor Archeology]()
