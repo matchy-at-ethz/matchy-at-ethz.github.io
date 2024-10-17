@@ -13,8 +13,8 @@ mathjax-support = true
 enable = true
 level = 0
 
-[output.pytoc]
-command = "python3 ../../scripts/autogen-toc.py"
+# [preprocessor.pytoc]
+# command = "python3 scripts/autogen-toc.py"
 
 [preprocessor.mermaid]
 command = "mdbook-mermaid"

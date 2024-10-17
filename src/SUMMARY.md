@@ -35,6 +35,7 @@
 - [Introduction to Machine Learning](./23fs/iml/introduction_to_machine_learning.md)
   - [Introduction](./23fs/iml/01_introduction.md)
   - [Linear Regression](./23fs/iml/02_regression.md)
+  - [Optimization](./23fs/iml/03_optimization.md)
 
 ---
 
