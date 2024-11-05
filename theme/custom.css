@@ -1,0 +1,80 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap");
+
+@font-face {
+  font-display: swap;
+  font-family: "LXGW WenKai";
+  font-style: normal;
+  font-weight: 300;
+  src: url("/fonts/LXGWWenKai-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "LXGW WenKai";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/LXGWWenKai-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "LXGW WenKai";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/fonts/LXGWWenKai-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "LXGW WenKai Mono";
+  font-style: normal;
+  font-weight: 300;
+  src: url("/fonts/LXGWWenKaiMono-Light.ttf") format("truetype");
+  format("truetype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "LXGW WenKai Mono";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/LXGWWenKaiMono-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "LXGW WenKai Mono";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/fonts/LXGWWenKaiMono-Medium.ttf") format("truetype");
+}
+
+:root {
+  --font-family: "Libre Baskerville", "LXGW WenKai", serif;
+  --font-family-monospace: "JetBrains Mono", "LXGW WenKai Mono", monospace;
+}
+
+body {
+  font-family: var(--font-family);
+}
+
+.menu-title {
+  font-family: var(--font-family-monospace);
+  font-weight: 700;
+  font-size: 1.2em;
+}
+.chapter .chapter-item {
+  font-family: var(--font-family-monospace);
+  font-size: 0.9em;
+}
+
+li.part-title {
+  /* add a top horizontal line to separate parts */
+  color: var(--sidebar-active) !important;
+}
+
+pre,
+code {
+  font-family: var(--font-family-monospace) !important;
+  font-size: var(--code-font-size);
+}

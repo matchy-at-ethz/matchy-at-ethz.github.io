@@ -1,9 +1,5 @@
 # Classification Algorithms
 
-Here is a detailed summary of the **Classification Algorithms** in the uploaded document organized into bullet points and course notes. I have included key equations, concepts, and figures where possible.
-
----
-
 ## **Classification Overview**
 
 - **Problem**: Given an object \\(x\\), predict its class label \\(y\\). Examples include identifying objects in computer vision, detecting fraudulent credit card transactions, and gene classification in personalized medicine.

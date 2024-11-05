@@ -1,9 +1,5 @@
 # Feature Selection
 
-Here is a detailed summary and course notes for the uploaded document on **Feature Selection** from **Data Mining**:
-
----
-
 ## **What is Feature Selection?**
 
 - **Definition**: Feature selection involves identifying a relevant subset of features \\( X \\) that are most predictive of the output variable \\( Y \\) in supervised learning tasks.

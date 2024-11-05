@@ -1,9 +1,5 @@
 # Applications in Computational Biology
 
-Here is a detailed summary and course notes for the uploaded document on **Applications in Computational Biology** from **Data Mining**:
-
----
-
 ## **Deleteriousness Prediction**
 
 - **Objective**: Assess whether a genetic variant, specifically a missense variant (which causes amino acid changes), is deleterious (harmful).
