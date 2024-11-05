@@ -1,0 +1,555 @@
+<!DOCTYPE HTML>
+<html lang="en" class="rust" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Modern Genomics I - Notes @ ETH Zürich</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../theme/custom.css">
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "ayu" : "rust";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('rust')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item affix "><a href="../../index.html">Home</a></li><li class="spacer"></li><li class="chapter-item affix "><li class="part-title">22HS</li><li class="chapter-item "><div><strong aria-hidden="true">1.</strong> Computational Biology</div></li><li class="chapter-item "><a href="../../22hs/dm1/data_mining_i.html"><strong aria-hidden="true">2.</strong> Data Mining I</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../22hs/dm1/01_metrics.html"><strong aria-hidden="true">2.1.</strong> Metrics</a></li><li class="chapter-item "><a href="../../22hs/dm1/02_classification.html"><strong aria-hidden="true">2.2.</strong> Classification</a></li><li class="chapter-item "><a href="../../22hs/dm1/03_clustering.html"><strong aria-hidden="true">2.3.</strong> Clustering</a></li><li class="chapter-item "><a href="../../22hs/dm1/04_feature_selection.html"><strong aria-hidden="true">2.4.</strong> Feature Selection</a></li><li class="chapter-item "><a href="../../22hs/dm1/05_applications_in_computational_biology.html"><strong aria-hidden="true">2.5.</strong> Applications in Computational Biology</a></li><li class="spacer"></li></ol></li><li class="chapter-item "><li class="part-title">23FS + HS</li><li class="chapter-item "><a href="../../23fs/mham/mobile_health_and_activity_monitoring.html"><strong aria-hidden="true">3.</strong> Mobile Health and Activity Monitoring</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><div><strong aria-hidden="true">3.1.</strong> Introduction</div></li></ol></li><li class="chapter-item "><a href="../../23fs/bdfe/big_data_for_engineers.html"><strong aria-hidden="true">4.</strong> Big Data for Engineers</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../23fs/bdfe/01_azure_blob_storage.html"><strong aria-hidden="true">4.1.</strong> Azure Blob Storage</a></li><li class="chapter-item "><a href="../../23fs/bdfe/02_hadoop.html"><strong aria-hidden="true">4.2.</strong> Hadoop</a></li><li class="chapter-item "><a href="../../23fs/bdfe/03_spark.html"><strong aria-hidden="true">4.3.</strong> Spark</a></li><li class="chapter-item "><a href="../../23fs/bdfe/04_jsoniq.html"><strong aria-hidden="true">4.4.</strong> JSONiq</a></li><li class="chapter-item "><a href="../../23fs/bdfe/05_hbase_(wide_column_store).html"><strong aria-hidden="true">4.5.</strong> HBase (Wide Column Store)</a></li><li class="chapter-item "><a href="../../23fs/bdfe/06_mapreduce.html"><strong aria-hidden="true">4.6.</strong> MapReduce</a></li><li class="chapter-item "><a href="../../23fs/bdfe/07_yarn.html"><strong aria-hidden="true">4.7.</strong> YARN</a></li></ol></li><li class="chapter-item expanded "><a href="../../23fs/fg/functional_genomics.html"><strong aria-hidden="true">5.</strong> Functional Genomics</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../23fs/fg/01_modern_genomics_i.html" class="active"><strong aria-hidden="true">5.1.</strong> Modern Genomics I</a></li><li class="chapter-item "><a href="../../23fs/fg/02_modern_genomics_ii.html"><strong aria-hidden="true">5.2.</strong> Modern Genomics II</a></li><li class="chapter-item "><a href="../../23fs/fg/03_transcriptomics_i.html"><strong aria-hidden="true">5.3.</strong> Transcriptomics I</a></li><li class="chapter-item "><a href="../../23fs/fg/04_transcriptomics_ii.html"><strong aria-hidden="true">5.4.</strong> Transcriptomics II</a></li><li class="chapter-item "><div><strong aria-hidden="true">5.5.</strong> MicroRNAs and other small RNAs</div></li><li class="chapter-item "><div><strong aria-hidden="true">5.6.</strong> Proteomics</div></li><li class="chapter-item "><div><strong aria-hidden="true">5.7.</strong> Metabolomics</div></li><li class="chapter-item "><div><strong aria-hidden="true">5.8.</strong> Single Cell Mass Cytometry</div></li><li class="chapter-item "><div><strong aria-hidden="true">5.9.</strong> Protein Networks</div></li><li class="chapter-item "><div><strong aria-hidden="true">5.10.</strong> Epigenomics and Gene Regulation</div></li><li class="chapter-item "><div><strong aria-hidden="true">5.11.</strong> Qualitiy Control and Standards</div></li><li class="spacer"></li></ol></li><li class="chapter-item "><li class="part-title">24FS</li><li class="chapter-item "><div><strong aria-hidden="true">6.</strong> Biofluiddynamics</div></li><li class="chapter-item "><div><strong aria-hidden="true">7.</strong> Synthetic Biology I</div></li><li class="chapter-item affix "><li class="part-title">24HS</li><li class="chapter-item "><div><strong aria-hidden="true">8.</strong> Computer Architecture</div></li><li class="chapter-item "><div><strong aria-hidden="true">9.</strong> Applied Bioinformatics: Microbiomes</div></li><li class="chapter-item "><a href="../../24hs/evodynamo/evolutionary_dynamics.html"><strong aria-hidden="true">10.</strong> Evolutionary Dynamics</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../24hs/evodynamo/01_what_is_evolution.html"><strong aria-hidden="true">10.1.</strong> What is Evolution?</a></li><li class="chapter-item "><a href="../../24hs/evodynamo/02_quasispecies.html"><strong aria-hidden="true">10.2.</strong> Quasispecies</a></li><li class="chapter-item "><a href="../../24hs/evodynamo/03_stochastic_modles_of_finite_populations.html"><strong aria-hidden="true">10.3.</strong> Stochastic Models of Finite Populations</a></li><li class="chapter-item "><a href="../../24hs/evodynamo/04_evolutionary_dynamics_of_cancer.html"><strong aria-hidden="true">10.4.</strong> Evolutionary Dynamics of Cancer</a></li><li class="chapter-item "><div><strong aria-hidden="true">10.5.</strong> Cancer Progression: The Speed of Adaptation</div></li><li class="chapter-item "><div><strong aria-hidden="true">10.6.</strong> Diffusion Theory</div></li><li class="chapter-item "><div><strong aria-hidden="true">10.7.</strong> Evolutionary Game Theory</div></li><li class="chapter-item "><div><strong aria-hidden="true">10.8.</strong> Evolutionary Games in Finite Populations</div></li><li class="chapter-item "><div><strong aria-hidden="true">10.9.</strong> Spatial Models for the Evolution of Solid Tumors</div></li><li class="chapter-item "><div><strong aria-hidden="true">10.10.</strong> Branching Processes</div></li><li class="chapter-item "><div><strong aria-hidden="true">10.11.</strong> Evolutionary Escape</div></li><li class="chapter-item "><div><strong aria-hidden="true">10.12.</strong> Coalescent Theory</div></li><li class="chapter-item "><div><strong aria-hidden="true">10.13.</strong> Tumor Archeology</div></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Notes @ ETH Zürich</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="modern-genomics-i"><a class="header" href="#modern-genomics-i">Modern Genomics I</a></h1>
+<ul>
+<li><a href="#introduction">Introduction</a>
+<ul>
+<li><a href="#timeline">Timeline</a></li>
+<li><a href="#why-genomics">Why Genomics?</a></li>
+<li><a href="#comparative-genomics-use-case-examples">Comparative genomics use case examples</a></li>
+</ul>
+</li>
+<li><a href="#classical-sequencing-method">Classical sequencing method</a>
+<ul>
+<li><a href="#sanger-double-deoxy-sequencing">Sanger (double-deoxy) sequencing</a></li>
+<li><a href="#automated-dye-sequencing">Automated Dye Sequencing</a></li>
+</ul>
+</li>
+<li><a href="#new-next-generation-sequencing-technologies">New (Next-generation) sequencing technologies</a>
+<ul>
+<li><a href="#amplification-technologies">Amplification technologies</a>
+<ul>
+<li><a href="#emulsion-pcr">Emulsion PCR</a></li>
+<li><a href="#pcr-on-solid-support">PCR on solid support</a></li>
+</ul>
+</li>
+<li><a href="#barcoding-and-linked-reads">Barcoding and &quot;linked reads&quot;</a></li>
+<li><a href="#sequencing-technologies">Sequencing technologies</a>
+<ul>
+<li><a href="#pyrosequencing">Pyrosequencing</a></li>
+<li><a href="#reversible-terminator-sequencing">Reversible terminator sequencing</a></li>
+<li><a href="#sequencing-by-semi-conductor">Sequencing by semi-conductor</a></li>
+</ul>
+</li>
+<li><a href="#current-implementations-of-ngs">Current implementations of NGS</a></li>
+</ul>
+</li>
+<li><a href="#third-generation-sequencing-technologies">Third-generation sequencing technologies</a></li>
+<li><a href="#environmental-sequencing">Environmental sequencing</a>
+<ul>
+<li><a href="#how-to-deal-with-environmental-sequencing-data">How to deal with environmental sequencing data</a></li>
+</ul>
+</li>
+<li><a href="#single-cell-sequencing">Single-cell sequencing</a>
+<ul>
+<li><a href="#why">Why?</a></li>
+<li><a href="#how">How?</a>
+<ul>
+<li><a href="#single-cell-isolation">Single-cell isolation</a></li>
+<li><a href="#whole-genome-amplification">Whole genome amplification</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#genomic-databases">Genomic databases</a></li>
+</ul>
+<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
+<p><span style="color:gray">Molecular biology is governed by the &quot;central dogma&quot;. Genomics is basically studying the <em>DNA</em> part of it.</span></p>
+<p><strong>Genome sequence</strong>: complete listing of <u>all nucleotides</u> of <u>one organisms</u>, in correct order, and mapped to the chromosomes.</p>
+<pre class="mermaid">graph LR
+    A[DNA] --&gt;|Transcription| B[RNA]
+    B --&gt;|Translation| C[Protein]
+</pre>
+<h3 id="timeline"><a class="header" href="#timeline">Timeline</a></h3>
+<p>Efficient sequencing technology arrived rather late. Initially the sequencing process was cumbersome and radioactive.</p>
+<ul>
+<li>1975: &quot;dideoxy&quot; DNA sequencing (Sanger)</li>
+<li>1977: first genome (<u>bacteriophage \( \phi X 174 \) </u>)</li>
+<li>1995: first <u>cell</u> (Haemophilus influenzae)</li>
+<li>1998: first animal (Caenorhabditis elegans)</li>
+<li>2001: Homo sapiens</li>
+<li>Today (February 2023)
+<ul>
+<li><span style="color:gray">genomes available for: 409,947 Bacteria, 4,988 Archaea, 47,200 Eukaryotes</span></li>
+<li><span style="color:gray">human genomes fairly routine</span>
+<ul>
+<li><span style="color:gray">below 1000$ raw costs</span></li>
+<li><span style="color:gray">&quot;Personal Genome Projects&quot; are enrolling 100’000s of volunteers, including their medical records</span></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="why-genomics"><a class="header" href="#why-genomics">Why Genomics?</a></h3>
+<ul>
+<li>Because we want an inventory of all genes and functions</li>
+<li>Because wea can compare genomes to learn about evolution, to get hints on gene function, etc
+<ul>
+<li>Comparison can be either based on DNA or protein</li>
+<li>Alignments, dot plots, whole chromosome comparison</li>
+</ul>
+</li>
+</ul>
+<h3 id="comparative-genomics-use-case-examples"><a class="header" href="#comparative-genomics-use-case-examples">Comparative genomics use case examples</a></h3>
+<ul>
+<li>Gene prediction
+<ul>
+<li>Gene prediction algorithms that use homology (=comparative genomics result) information: SLAM, SGP, Twinscan (= N-SCAN)...</li>
+<li><img src="img/20240202163019.png" alt="UCSC genome browser gene prediction" /></li>
+</ul>
+</li>
+<li>Gene family evolution</li>
+</ul>
+<h2 id="classical-sequencing-method"><a class="header" href="#classical-sequencing-method">Classical sequencing method</a></h2>
+<h3 id="sanger-double-deoxy-sequencing"><a class="header" href="#sanger-double-deoxy-sequencing">Sanger (double-deoxy) sequencing</a></h3>
+<p>Natural DNA extension requires 3'-OH. The dideoxy method uses a 2',3'-dideoxy nucleotide, which lacks the 3'-OH group. This causes the DNA chain to terminate. By introducing different dideoxy nucleotides, the sequence can be read.</p>
+<h3 id="automated-dye-sequencing"><a class="header" href="#automated-dye-sequencing">Automated Dye Sequencing</a></h3>
+<p>Variants of Sanger sequencing. Still utilize the dideoxy method to terminate DNA elongation. The difference is that the dideoxy nucleotides are labeled with different fluorescent dyes. The sequence is read by a laser.</p>
+<p><img src="img/20240202163700.png" alt="Two variants of Automated Dye Sequencing" /></p>
+<p>Dye terminator sequencing is now widely used over the rather cumbersome (4 tubes per sample) dye primer chemistry.</p>
+<h2 id="new-next-generation-sequencing-technologies"><a class="header" href="#new-next-generation-sequencing-technologies">New (Next-generation) sequencing technologies</a></h2>
+<p>Generally involves first <strong>amplifying</strong> the DNA, then <strong>sequencing</strong> it. Sequencing is done by detecting the nucleotides as they are incorporated into the growing DNA strand (sequencing by synthesis). High-throughput is achieved by parallelizing the sequencing process.</p>
+<h3 id="amplification-technologies"><a class="header" href="#amplification-technologies">Amplification technologies</a></h3>
+<p>First-generation amplification technology: needs DNA-library in bacterial vectors --&gt; cumbersome and biased</p>
+<p>Improvement: get rid of bacteria</p>
+<h4 id="emulsion-pcr"><a class="header" href="#emulsion-pcr">Emulsion PCR</a></h4>
+<p>Improvement: bacterium free, but still needs cloning</p>
+<pre class="mermaid">%%{init: {&quot;graph&quot;: {&quot;htmlLabels&quot;: false}} }%%
+graph TD
+    A[&quot;`**Fragment** the DNA, ligate **adapters** to ends, make **single-stranded**`&quot;] --&gt; B[&quot;Attach to microbeads&quot;]
+    B --&gt; C[&quot;`PCR-amplify, in a **water-oil emulsion**`&quot;]
+    C --&gt; D[&quot;`Enrich beads having successful amplifications, then place into regular lattice
+    (see figure below for details)`&quot;]
+</pre>
+<p><img src="img/20240203111110.png" alt="Emulsion PCR enrichment step" /></p>
+<p>In short, the enrichment is done by capturing the second (5'-end) primer of the PCR product onto a large polysyrene bead.</p>
+<h4 id="pcr-on-solid-support"><a class="header" href="#pcr-on-solid-support">PCR on solid support</a></h4>
+<p><img src="img/20240203111302.png" alt="PCR on solid support" /></p>
+<h3 id="barcoding-and-linked-reads"><a class="header" href="#barcoding-and-linked-reads">Barcoding and &quot;linked reads&quot;</a></h3>
+<p><img src="img/20240203114453.png" alt="Barcoding" /></p>
+<p><img src="img/20240203114512.png" alt="10X technology" /></p>
+<h3 id="sequencing-technologies"><a class="header" href="#sequencing-technologies">Sequencing technologies</a></h3>
+<p>First-generation sequencing needs DNA size-separation on a gel</p>
+<p>Improvement: get rid of gel (sequencing by synthesis)</p>
+<h4 id="pyrosequencing"><a class="header" href="#pyrosequencing">Pyrosequencing</a></h4>
+<p><img src="img/20240203113950.png" alt="Pyrosequencing" /></p>
+<h4 id="reversible-terminator-sequencing"><a class="header" href="#reversible-terminator-sequencing">Reversible terminator sequencing</a></h4>
+<p><img src="img/20240203113926.png" alt="Reversible terminator sequencing" /></p>
+<h4 id="sequencing-by-semi-conductor"><a class="header" href="#sequencing-by-semi-conductor">Sequencing by semi-conductor</a></h4>
+<p>Directly detects the release of H+ ions when a nucleotide is incorporated into the growing DNA strand.</p>
+<p><img src="img/20240203114721.png" alt="Sequencing by semi-conductor" /></p>
+<h3 id="current-implementations-of-ngs"><a class="header" href="#current-implementations-of-ngs">Current implementations of NGS</a></h3>
+<ul>
+<li>Illumina
+<ul>
+<li>Illumina NovaSeq 6000</li>
+<li>PCR on <u>solid support</u></li>
+<li><u>reversible terminator</u> sequencing</li>
+<li>read length ca. 250bp</li>
+<li><code>1e14</code> bp per run</li>
+</ul>
+</li>
+<li>Ion Torrent / Life Techn. Inc
+<ul>
+<li>Ion Gene Studio S5</li>
+<li>PCR on <u>beads</u></li>
+<li>sequencing by <u>semi-conductor</u></li>
+<li>read length ca. 600bp</li>
+<li><code>1e10</code> bp per run</li>
+</ul>
+</li>
+</ul>
+<h2 id="third-generation-sequencing-technologies"><a class="header" href="#third-generation-sequencing-technologies">Third-generation sequencing technologies</a></h2>
+<p><strong>Single molecule sequencing</strong>. <strong>No</strong> need for <strong>amplification</strong>.</p>
+<p>Characterized by extremely long reads, but also high error rates.</p>
+<ul>
+<li>Pacific Biosciences
+<ul>
+<li><strong>SMRT</strong> (single molecule real time) sequencing</li>
+<li><img src="img/20240203114758.png" alt="pacbio1" /></li>
+<li><img src="img/20240203114809.png" alt="pacbio1" /></li>
+</ul>
+</li>
+<li>Oxford <strong>Nanopore</strong>
+<ul>
+<li>MinION</li>
+<li><img src="img/20240203114829.png" alt="oxford nanopore" /></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>Self-note</strong>: minimap2 is a popular aligner for long reads.</p>
+</blockquote>
+<h2 id="environmental-sequencing"><a class="header" href="#environmental-sequencing">Environmental sequencing</a></h2>
+<p><u>Traditional genome sequencing</u> requires individual <strong>cell isolation</strong> and <strong>cultivation</strong>. This is not possible for the majority of microorganisms. But one advantage is that it's possible to re-assemble the genome from the reads.</p>
+<p>Environmental sequencing: directly sequence DNA extracted from the environment without purification and clonal cultivation. Genome assembly is generally not possible.</p>
+<blockquote>
+<p><strong>Self-note</strong>: data generated from environmental sequencing is typically large in size, but highly fragmented and contaminated. Lots of exciting research in this area.</p>
+</blockquote>
+<h3 id="how-to-deal-with-environmental-sequencing-data"><a class="header" href="#how-to-deal-with-environmental-sequencing-data">How to deal with environmental sequencing data</a></h3>
+<ul>
+<li>Novel gene discovery
+<ul>
+<li>Sequence identity comparison to known genes
+<ul>
+<li>But &gt; 50% of the environmental genomes are not similar to any known genome</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Novel gene families</li>
+<li>Gene family clustering (similar samples have similar gene family distribution)</li>
+</ul>
+<h2 id="single-cell-sequencing"><a class="header" href="#single-cell-sequencing">Single-cell sequencing</a></h2>
+<h3 id="why"><a class="header" href="#why">Why?</a></h3>
+<ul>
+<li><strong>Heterogeneity</strong> in cell populations
+<ul>
+<li>Tumor cells</li>
+<li>Immune cells</li>
+<li>Microbial communities</li>
+<li>Developmental biology</li>
+</ul>
+</li>
+</ul>
+<h3 id="how"><a class="header" href="#how">How?</a></h3>
+<p>In short, we first get <strong>single</strong> cells, then amplify the <strong>whole genome</strong> and sequence it.</p>
+<p>The challenges lie in the bolded parts.</p>
+<h4 id="single-cell-isolation"><a class="header" href="#single-cell-isolation">Single-cell isolation</a></h4>
+<p>(In the very first &quot;single cell&quot; genomics paper, the &quot;single&quot; cells were literally picked manually...nowadays we don't do that)</p>
+<ol>
+<li>Sorting with optical tweezers
+<img src="img/20240304231454.png" alt="Optic tweezers" /></li>
+<li>Dilution series</li>
+<li>Flow sorting
+<img src="img/20240304231416.png" alt="Flow sorting" /></li>
+</ol>
+<h4 id="whole-genome-amplification"><a class="header" href="#whole-genome-amplification">Whole genome amplification</a></h4>
+<p>Steps summarized:</p>
+<ol>
+<li>MDA</li>
+<li>phi 29 debranching</li>
+<li>S1 nuclease digestion</li>
+<li>DNA pol I nick translation</li>
+<li>Cloning</li>
+</ol>
+<ul>
+<li>Isothermal <strong>Multiple displacement amplification</strong> (MDA)
+<ul>
+<li><strong>Phi29</strong> DNA polymerase</li>
+<li><strong>Random primers</strong></li>
+<li><strong>Isothermal</strong> amplification</li>
+</ul>
+</li>
+</ul>
+<p><img src="img/20240304231641.png" alt="MDA" /></p>
+<p>After MDA, we obtained a &quot;<strong>hyperbranched chromosome</strong>&quot;. After <em>debranching</em> and cloning, we can sequence and re-assemble the genome.</p>
+<p><img src="img/20240304231833.png" alt="Next steps" /></p>
+<p>The debranching is done by incubating phi 29 DNA pol with hyperbranched DNA <strong>without any primer</strong>. The <em>strand-replacement</em> activity of phi 29 DNA pol will remove the hyperbranched structure.</p>
+<p>S1 nucleases are used to remove the remaining single-stranded DNA.</p>
+<p>Nicks are filled in by DNA pol I (has 5'-&gt;3' exonuclease activity).</p>
+<h2 id="genomic-databases"><a class="header" href="#genomic-databases">Genomic databases</a></h2>
+<p>This section likely won't be covered in the exam.</p>
+<blockquote>
+<p><strong>General popular resources</strong>:</p>
+<ul>
+<li>Raw data: NCBI <strong>sequence read archive (SRA)</strong> (also it's European counterpart, EBI <strong>European Nucleotide Archive (ENA)</strong>, but they are basically the same thing now)
+<ul>
+<li>seq quality score included</li>
+<li>but incomplete: legacy &amp; newer data not available</li>
+<li>gigantic in size</li>
+</ul>
+</li>
+<li>Sequencing projects: <a href="https://gold.jgi.doe.gov/">GOLD (Genomes OnLine Database)</a>
+<ul>
+<li>keep track of &quot;who is sequencing what&quot; and responsible researchers (contacts), funding sources, sequencing centers etc</li>
+</ul>
+</li>
+<li>Genome browsers
+<ul>
+<li>Display features (genes, transcripts...) on the genomes, show annotations (conflicts, variants also included), homolog search</li>
+<li>UCSC genome browser, Ensembl (popular in Europe)</li>
+<li>Pros and cons of genome browsers
+<ul>
+<li>Pros
+<ul>
+<li>easy to use</li>
+<li>regularly updated</li>
+<li>automated annotation pipelines =&gt; fast to include new genomes</li>
+<li>very powerful export utilities (<code>BioMart</code> in Ensembl)</li>
+<li>API for local access</li>
+<li>DAS (distributed annotation system) for data exchange</li>
+<li>long term project, stable funding, likely not going away</li>
+</ul>
+</li>
+<li>Cons
+<ul>
+<li>focus on vertebrates, few other genomes</li>
+<li>complex db schema</li>
+<li>popular, so can be slow</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Special ones:</p>
+<ul>
+<li>Comparative genomics databases
+<ul>
+<li>STRING (protein-protein interactions, focused on microbial genomes, maintained by von Mering group at UZH)</li>
+<li>specialized on comparing genomes (at nucleotide-level, or gene-level)</li>
+<li>to visualize evidence of selection (exons, regulatory sites, ...)</li>
+<li>to infer past evolution of genomes (rearrangements, gains, losses, ...)</li>
+<li>to establish gene histories (orthology, paralogy, synteny, ...)</li>
+<li>often require extensive offline computation before they go online</li>
+<li>some of their services also offered by generic genome browsers/sites.</li>
+</ul>
+</li>
+<li>Organism-specific databases
+<ul>
+<li>Flybase, Wormbase, TAIR, SGD...</li>
+<li>community driven, extensive manual input</li>
+<li>specific terms, abbreviations, gene names...</li>
+</ul>
+</li>
+<li>Specialized databases
+<ul>
+<li>IGSR: human population genetics</li>
+<li>OMIM: known disease-causing mutations</li>
+<li>KEGG: metabolic pathways and enzymes</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../23fs/fg/functional_genomics.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../../23fs/fg/02_modern_genomics_ii.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../23fs/fg/functional_genomics.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../../23fs/fg/02_modern_genomics_ii.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../../mermaid.min.js"></script>
+        <script src="../../mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>

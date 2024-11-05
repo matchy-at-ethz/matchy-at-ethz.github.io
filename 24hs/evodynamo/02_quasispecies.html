@@ -1,0 +1,333 @@
+<!DOCTYPE HTML>
+<html lang="en" class="rust" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Quasispecies - Notes @ ETH Zürich</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../theme/custom.css">
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "ayu" : "rust";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('rust')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item affix "><a href="../../index.html">Home</a></li><li class="spacer"></li><li class="chapter-item affix "><li class="part-title">22HS</li><li class="chapter-item "><div><strong aria-hidden="true">1.</strong> Computational Biology</div></li><li class="chapter-item "><a href="../../22hs/dm1/data_mining_i.html"><strong aria-hidden="true">2.</strong> Data Mining I</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../22hs/dm1/01_metrics.html"><strong aria-hidden="true">2.1.</strong> Metrics</a></li><li class="chapter-item "><a href="../../22hs/dm1/02_classification.html"><strong aria-hidden="true">2.2.</strong> Classification</a></li><li class="chapter-item "><a href="../../22hs/dm1/03_clustering.html"><strong aria-hidden="true">2.3.</strong> Clustering</a></li><li class="chapter-item "><a href="../../22hs/dm1/04_feature_selection.html"><strong aria-hidden="true">2.4.</strong> Feature Selection</a></li><li class="chapter-item "><a href="../../22hs/dm1/05_applications_in_computational_biology.html"><strong aria-hidden="true">2.5.</strong> Applications in Computational Biology</a></li><li class="spacer"></li></ol></li><li class="chapter-item "><li class="part-title">23FS + HS</li><li class="chapter-item "><a href="../../23fs/mham/mobile_health_and_activity_monitoring.html"><strong aria-hidden="true">3.</strong> Mobile Health and Activity Monitoring</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><div><strong aria-hidden="true">3.1.</strong> Introduction</div></li></ol></li><li class="chapter-item "><a href="../../23fs/bdfe/big_data_for_engineers.html"><strong aria-hidden="true">4.</strong> Big Data for Engineers</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../23fs/bdfe/01_azure_blob_storage.html"><strong aria-hidden="true">4.1.</strong> Azure Blob Storage</a></li><li class="chapter-item "><a href="../../23fs/bdfe/02_hadoop.html"><strong aria-hidden="true">4.2.</strong> Hadoop</a></li><li class="chapter-item "><a href="../../23fs/bdfe/03_spark.html"><strong aria-hidden="true">4.3.</strong> Spark</a></li><li class="chapter-item "><a href="../../23fs/bdfe/04_jsoniq.html"><strong aria-hidden="true">4.4.</strong> JSONiq</a></li><li class="chapter-item "><a href="../../23fs/bdfe/05_hbase_(wide_column_store).html"><strong aria-hidden="true">4.5.</strong> HBase (Wide Column Store)</a></li><li class="chapter-item "><a href="../../23fs/bdfe/06_mapreduce.html"><strong aria-hidden="true">4.6.</strong> MapReduce</a></li><li class="chapter-item "><a href="../../23fs/bdfe/07_yarn.html"><strong aria-hidden="true">4.7.</strong> YARN</a></li></ol></li><li class="chapter-item "><a href="../../23fs/fg/functional_genomics.html"><strong aria-hidden="true">5.</strong> Functional Genomics</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../23fs/fg/01_modern_genomics_i.html"><strong aria-hidden="true">5.1.</strong> Modern Genomics I</a></li><li class="chapter-item "><a href="../../23fs/fg/02_modern_genomics_ii.html"><strong aria-hidden="true">5.2.</strong> Modern Genomics II</a></li><li class="chapter-item "><a href="../../23fs/fg/03_transcriptomics_i.html"><strong aria-hidden="true">5.3.</strong> Transcriptomics I</a></li><li class="chapter-item "><a href="../../23fs/fg/04_transcriptomics_ii.html"><strong aria-hidden="true">5.4.</strong> Transcriptomics II</a></li><li class="chapter-item "><div><strong aria-hidden="true">5.5.</strong> MicroRNAs and other small RNAs</div></li><li class="chapter-item "><div><strong aria-hidden="true">5.6.</strong> Proteomics</div></li><li class="chapter-item "><div><strong aria-hidden="true">5.7.</strong> Metabolomics</div></li><li class="chapter-item "><div><strong aria-hidden="true">5.8.</strong> Single Cell Mass Cytometry</div></li><li class="chapter-item "><div><strong aria-hidden="true">5.9.</strong> Protein Networks</div></li><li class="chapter-item "><div><strong aria-hidden="true">5.10.</strong> Epigenomics and Gene Regulation</div></li><li class="chapter-item "><div><strong aria-hidden="true">5.11.</strong> Qualitiy Control and Standards</div></li><li class="spacer"></li></ol></li><li class="chapter-item "><li class="part-title">24FS</li><li class="chapter-item "><div><strong aria-hidden="true">6.</strong> Biofluiddynamics</div></li><li class="chapter-item "><div><strong aria-hidden="true">7.</strong> Synthetic Biology I</div></li><li class="chapter-item affix "><li class="part-title">24HS</li><li class="chapter-item "><div><strong aria-hidden="true">8.</strong> Computer Architecture</div></li><li class="chapter-item "><div><strong aria-hidden="true">9.</strong> Applied Bioinformatics: Microbiomes</div></li><li class="chapter-item expanded "><a href="../../24hs/evodynamo/evolutionary_dynamics.html"><strong aria-hidden="true">10.</strong> Evolutionary Dynamics</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../24hs/evodynamo/01_what_is_evolution.html"><strong aria-hidden="true">10.1.</strong> What is Evolution?</a></li><li class="chapter-item expanded "><a href="../../24hs/evodynamo/02_quasispecies.html" class="active"><strong aria-hidden="true">10.2.</strong> Quasispecies</a></li><li class="chapter-item "><a href="../../24hs/evodynamo/03_stochastic_modles_of_finite_populations.html"><strong aria-hidden="true">10.3.</strong> Stochastic Models of Finite Populations</a></li><li class="chapter-item "><a href="../../24hs/evodynamo/04_evolutionary_dynamics_of_cancer.html"><strong aria-hidden="true">10.4.</strong> Evolutionary Dynamics of Cancer</a></li><li class="chapter-item "><div><strong aria-hidden="true">10.5.</strong> Cancer Progression: The Speed of Adaptation</div></li><li class="chapter-item "><div><strong aria-hidden="true">10.6.</strong> Diffusion Theory</div></li><li class="chapter-item "><div><strong aria-hidden="true">10.7.</strong> Evolutionary Game Theory</div></li><li class="chapter-item "><div><strong aria-hidden="true">10.8.</strong> Evolutionary Games in Finite Populations</div></li><li class="chapter-item "><div><strong aria-hidden="true">10.9.</strong> Spatial Models for the Evolution of Solid Tumors</div></li><li class="chapter-item "><div><strong aria-hidden="true">10.10.</strong> Branching Processes</div></li><li class="chapter-item "><div><strong aria-hidden="true">10.11.</strong> Evolutionary Escape</div></li><li class="chapter-item "><div><strong aria-hidden="true">10.12.</strong> Coalescent Theory</div></li><li class="chapter-item "><div><strong aria-hidden="true">10.13.</strong> Tumor Archeology</div></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Notes @ ETH Zürich</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="quasispecies"><a class="header" href="#quasispecies">Quasispecies</a></h1>
+<h2 id="key-concepts"><a class="header" href="#key-concepts">Key Concepts</a></h2>
+<ul>
+<li>
+<p><strong>HIV Infection</strong>:</p>
+<ul>
+<li>HIV has a short genome (~10,000 bases) and a very high mutation rate (~\(3 \times 10^{-5}\) per base per replication).</li>
+<li>Rapid adaptation due to short generation time, large population sizes, and strong selective pressures (e.g., immune response, antiretroviral therapy).</li>
+</ul>
+</li>
+<li>
+<p><strong>Sequence Space</strong>:</p>
+<ul>
+<li><strong>Sequence Space</strong>: Describes the set of all possible genetic sequences of a given length \(L\).</li>
+<li>For DNA, the sequence is made from bases \(A, C, G, T\), and for proteins, the sequence is based on 20 amino acids.</li>
+<li><strong>Binary Sequences</strong>: Simplified representation using \(0\) and \(1\). For a binary sequence of length \(L\), there are \(2^L\) possible sequences.</li>
+<li><strong>Hamming Distance</strong>: Used to measure the difference between two sequences based on the number of mismatched positions.</li>
+</ul>
+</li>
+<li>
+<p><strong>Fitness Landscapes</strong>:</p>
+<ul>
+<li><strong>Definition</strong>: A fitness landscape is a mapping from genotype space to fitness, \(f: G \rightarrow \mathbb{R}\), representing how well an organism can survive and reproduce.</li>
+<li><strong>Epistasis</strong>: Interactions between loci (positions on the genome) where the effect of one gene depends on the presence of others, influencing fitness.</li>
+</ul>
+</li>
+<li>
+<p><strong>Quasispecies Equation</strong>:</p>
+<ul>
+<li><strong>Quasispecies</strong>: A population of genetically diverse organisms that evolves under mutation and selection pressure.</li>
+<li><strong>Mathematical Representation</strong>:
+\[
+x'(t) = x(t) \cdot Q \cdot f(t) - x(t) \cdot \phi
+\]
+<ul>
+<li>\(x(t)\): Genotype frequency vector.</li>
+<li>\(Q\): Mutation matrix.</li>
+<li>\(f\): Fitness landscape vector.</li>
+<li>\(\phi\): Average population fitness.</li>
+</ul>
+</li>
+<li>The equilibrium solution of this equation predicts the balance between mutation and selection in a population.</li>
+</ul>
+</li>
+<li>
+<p><strong>Properties of the Quasispecies Equation</strong>:</p>
+<ul>
+<li>If replication is error-free (\(Q = I\)), the equation simplifies to the <strong>selection equation</strong>.</li>
+<li>If the mutation matrix \(Q\) is irreducible (strongly connected), there exists a single globally stable equilibrium \(x^*\).</li>
+<li>Mutation reduces overall population fitness compared to what would be expected from selection alone.</li>
+</ul>
+</li>
+<li>
+<p><strong>Adaptation</strong>:</p>
+<ul>
+<li>A population adapts by localizing around a peak in the fitness landscape, but mutation can cause individuals to drift away from these peaks.</li>
+<li><strong>Error Threshold</strong>: A critical mutation rate above which genetic information cannot be maintained, leading to the &quot;mutational meltdown&quot; phenomenon.</li>
+</ul>
+</li>
+<li>
+<p><strong>Error Threshold and HIV</strong>:</p>
+<ul>
+<li>For HIV, with a genome length \(L = 10^4\) and mutation rate \(u = 3 \times 10^{-5}\), the probability of an error-free genome copy is only 0.74.</li>
+<li>With 1 billion new viruses produced each day, a vast number of mutations occur daily.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="key-equations-and-models"><a class="header" href="#key-equations-and-models">Key Equations and Models</a></h2>
+<ul>
+<li>
+<p><strong>Quasispecies Equation</strong>:
+\[
+x'(t) = x(t) \cdot Q \cdot f(t) - x(t) \cdot \phi
+\]</p>
+<ul>
+<li>Describes the dynamics of a population under mutation and selection.</li>
+</ul>
+</li>
+<li>
+<p><strong>Hamming Distance</strong>:</p>
+<ul>
+<li>Measures the difference between two sequences by counting mismatched positions.</li>
+</ul>
+</li>
+<li>
+<p><strong>Error Threshold</strong>:</p>
+<ul>
+<li>Describes the mutation rate at which the population cannot maintain genetic information. The condition \(uL &gt; 1\) leads to <strong>mutational meltdown</strong>.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="summary-points"><a class="header" href="#summary-points">Summary Points</a></h2>
+<ul>
+<li>HIV's high mutation rate and short generation time lead to extreme evolutionary dynamics, allowing rapid adaptation to selective pressures.</li>
+<li>Sequence space and fitness landscapes provide a framework for understanding how populations evolve under mutation and selection.</li>
+<li>The quasispecies equation models the balance between mutation and selection in populations, particularly for RNA viruses like HIV.</li>
+<li>The concept of an error threshold indicates a mutation rate beyond which genetic information cannot be preserved, leading to population collapse.</li>
+<li>Mutation-selection balance is central to quasispecies theory, explaining viral diversity and resistance to treatment.</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../24hs/evodynamo/01_what_is_evolution.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../../24hs/evodynamo/03_stochastic_modles_of_finite_populations.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../24hs/evodynamo/01_what_is_evolution.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../../24hs/evodynamo/03_stochastic_modles_of_finite_populations.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../../mermaid.min.js"></script>
+        <script src="../../mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>

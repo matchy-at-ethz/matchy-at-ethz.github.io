@@ -1,0 +1,390 @@
+<!DOCTYPE HTML>
+<html lang="en" class="rust" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Stochastic Models of Finite Populations - Notes @ ETH Zürich</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../theme/custom.css">
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "ayu" : "rust";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('rust')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item affix "><a href="../../index.html">Home</a></li><li class="spacer"></li><li class="chapter-item affix "><li class="part-title">22HS</li><li class="chapter-item "><div><strong aria-hidden="true">1.</strong> Computational Biology</div></li><li class="chapter-item "><a href="../../22hs/dm1/data_mining_i.html"><strong aria-hidden="true">2.</strong> Data Mining I</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../22hs/dm1/01_metrics.html"><strong aria-hidden="true">2.1.</strong> Metrics</a></li><li class="chapter-item "><a href="../../22hs/dm1/02_classification.html"><strong aria-hidden="true">2.2.</strong> Classification</a></li><li class="chapter-item "><a href="../../22hs/dm1/03_clustering.html"><strong aria-hidden="true">2.3.</strong> Clustering</a></li><li class="chapter-item "><a href="../../22hs/dm1/04_feature_selection.html"><strong aria-hidden="true">2.4.</strong> Feature Selection</a></li><li class="chapter-item "><a href="../../22hs/dm1/05_applications_in_computational_biology.html"><strong aria-hidden="true">2.5.</strong> Applications in Computational Biology</a></li><li class="spacer"></li></ol></li><li class="chapter-item "><li class="part-title">23FS + HS</li><li class="chapter-item "><a href="../../23fs/mham/mobile_health_and_activity_monitoring.html"><strong aria-hidden="true">3.</strong> Mobile Health and Activity Monitoring</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><div><strong aria-hidden="true">3.1.</strong> Introduction</div></li></ol></li><li class="chapter-item "><a href="../../23fs/bdfe/big_data_for_engineers.html"><strong aria-hidden="true">4.</strong> Big Data for Engineers</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../23fs/bdfe/01_azure_blob_storage.html"><strong aria-hidden="true">4.1.</strong> Azure Blob Storage</a></li><li class="chapter-item "><a href="../../23fs/bdfe/02_hadoop.html"><strong aria-hidden="true">4.2.</strong> Hadoop</a></li><li class="chapter-item "><a href="../../23fs/bdfe/03_spark.html"><strong aria-hidden="true">4.3.</strong> Spark</a></li><li class="chapter-item "><a href="../../23fs/bdfe/04_jsoniq.html"><strong aria-hidden="true">4.4.</strong> JSONiq</a></li><li class="chapter-item "><a href="../../23fs/bdfe/05_hbase_(wide_column_store).html"><strong aria-hidden="true">4.5.</strong> HBase (Wide Column Store)</a></li><li class="chapter-item "><a href="../../23fs/bdfe/06_mapreduce.html"><strong aria-hidden="true">4.6.</strong> MapReduce</a></li><li class="chapter-item "><a href="../../23fs/bdfe/07_yarn.html"><strong aria-hidden="true">4.7.</strong> YARN</a></li></ol></li><li class="chapter-item "><a href="../../23fs/fg/functional_genomics.html"><strong aria-hidden="true">5.</strong> Functional Genomics</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../23fs/fg/01_modern_genomics_i.html"><strong aria-hidden="true">5.1.</strong> Modern Genomics I</a></li><li class="chapter-item "><a href="../../23fs/fg/02_modern_genomics_ii.html"><strong aria-hidden="true">5.2.</strong> Modern Genomics II</a></li><li class="chapter-item "><a href="../../23fs/fg/03_transcriptomics_i.html"><strong aria-hidden="true">5.3.</strong> Transcriptomics I</a></li><li class="chapter-item "><a href="../../23fs/fg/04_transcriptomics_ii.html"><strong aria-hidden="true">5.4.</strong> Transcriptomics II</a></li><li class="chapter-item "><div><strong aria-hidden="true">5.5.</strong> MicroRNAs and other small RNAs</div></li><li class="chapter-item "><div><strong aria-hidden="true">5.6.</strong> Proteomics</div></li><li class="chapter-item "><div><strong aria-hidden="true">5.7.</strong> Metabolomics</div></li><li class="chapter-item "><div><strong aria-hidden="true">5.8.</strong> Single Cell Mass Cytometry</div></li><li class="chapter-item "><div><strong aria-hidden="true">5.9.</strong> Protein Networks</div></li><li class="chapter-item "><div><strong aria-hidden="true">5.10.</strong> Epigenomics and Gene Regulation</div></li><li class="chapter-item "><div><strong aria-hidden="true">5.11.</strong> Qualitiy Control and Standards</div></li><li class="spacer"></li></ol></li><li class="chapter-item "><li class="part-title">24FS</li><li class="chapter-item "><div><strong aria-hidden="true">6.</strong> Biofluiddynamics</div></li><li class="chapter-item "><div><strong aria-hidden="true">7.</strong> Synthetic Biology I</div></li><li class="chapter-item affix "><li class="part-title">24HS</li><li class="chapter-item "><div><strong aria-hidden="true">8.</strong> Computer Architecture</div></li><li class="chapter-item "><div><strong aria-hidden="true">9.</strong> Applied Bioinformatics: Microbiomes</div></li><li class="chapter-item expanded "><a href="../../24hs/evodynamo/evolutionary_dynamics.html"><strong aria-hidden="true">10.</strong> Evolutionary Dynamics</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../24hs/evodynamo/01_what_is_evolution.html"><strong aria-hidden="true">10.1.</strong> What is Evolution?</a></li><li class="chapter-item "><a href="../../24hs/evodynamo/02_quasispecies.html"><strong aria-hidden="true">10.2.</strong> Quasispecies</a></li><li class="chapter-item expanded "><a href="../../24hs/evodynamo/03_stochastic_modles_of_finite_populations.html" class="active"><strong aria-hidden="true">10.3.</strong> Stochastic Models of Finite Populations</a></li><li class="chapter-item "><a href="../../24hs/evodynamo/04_evolutionary_dynamics_of_cancer.html"><strong aria-hidden="true">10.4.</strong> Evolutionary Dynamics of Cancer</a></li><li class="chapter-item "><div><strong aria-hidden="true">10.5.</strong> Cancer Progression: The Speed of Adaptation</div></li><li class="chapter-item "><div><strong aria-hidden="true">10.6.</strong> Diffusion Theory</div></li><li class="chapter-item "><div><strong aria-hidden="true">10.7.</strong> Evolutionary Game Theory</div></li><li class="chapter-item "><div><strong aria-hidden="true">10.8.</strong> Evolutionary Games in Finite Populations</div></li><li class="chapter-item "><div><strong aria-hidden="true">10.9.</strong> Spatial Models for the Evolution of Solid Tumors</div></li><li class="chapter-item "><div><strong aria-hidden="true">10.10.</strong> Branching Processes</div></li><li class="chapter-item "><div><strong aria-hidden="true">10.11.</strong> Evolutionary Escape</div></li><li class="chapter-item "><div><strong aria-hidden="true">10.12.</strong> Coalescent Theory</div></li><li class="chapter-item "><div><strong aria-hidden="true">10.13.</strong> Tumor Archeology</div></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Notes @ ETH Zürich</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="stochastic-models-of-finite-populations"><a class="header" href="#stochastic-models-of-finite-populations">Stochastic Models of Finite Populations</a></h1>
+<h2 id="key-concepts"><a class="header" href="#key-concepts">Key Concepts</a></h2>
+<ul>
+<li>
+<p><strong>Gambler’s Ruin</strong>:</p>
+<ul>
+<li>A classical problem in probability theory where a random walk eventually results in one party (player or bank) losing all resources, illustrating the inevitability of random processes reaching absorbing states.</li>
+</ul>
+</li>
+<li>
+<p><strong>Markov Chains</strong>:</p>
+<ul>
+<li><strong>Definition</strong>: A stochastic process where the next state depends only on the current state, not on the sequence of previous states. Described by a transition matrix.</li>
+<li><strong>Ergodicity</strong>: A Markov chain is ergodic if it is aperiodic and irreducible, meaning every state can be reached from any other, and a unique stationary distribution exists.</li>
+</ul>
+</li>
+<li>
+<p><strong>The Moran Process</strong>:</p>
+<ul>
+<li>A <strong>birth-death process</strong> where each step involves selecting one individual to reproduce and one to die in a population of constant size \(N\).</li>
+<li><strong>State space</strong>: The number of individuals of type \(A\) in the population, ranging from 0 to \(N\).</li>
+<li>The process is a Markov chain with <strong>two absorbing states</strong>: either all individuals are of type \(A\) (fixation) or all are of type \(B\) (extinction).</li>
+<li><strong>Neutral Drift</strong>: In the absence of selection, the allele frequencies change randomly due to drift.</li>
+</ul>
+</li>
+<li>
+<p><strong>Fixation Probability</strong>:</p>
+<ul>
+<li>The probability that a mutant allele reaches fixation (becomes the only allele in the population) starting from a certain frequency.</li>
+<li>In the Moran process, the fixation probability of a neutral allele is \(x_i = i / N\) where \(i\) is the initial number of individuals with the mutant allele.</li>
+</ul>
+</li>
+<li>
+<p><strong>Birth-Death Process</strong>:</p>
+<ul>
+<li>A process where population changes occur incrementally (by one individual at each step), often modeled using transition probabilities.</li>
+<li>Transition probabilities in the Moran process are:
+\[
+P_{i, i+1} = p(1 - p), \quad P_{i, i-1} = (1 - p)p, \quad P_{i, i} = p^2 + (1 - p)^2
+\]</li>
+<li>This tri-diagonal matrix structure means the population size can change by at most one individual per step.</li>
+</ul>
+</li>
+<li>
+<p><strong>Absorption Probabilities</strong>:</p>
+<ul>
+<li>The probability of ending in state \(N\) (all type A) when starting from state \(i\) is given by:
+\[
+x_i = \frac{1 + \sum_{j=1}^{i-1} \prod_{k=1}^{j} \gamma_k}{1 + \sum_{j=1}^{N-1} \prod_{k=1}^{j} \gamma_k}
+\]
+where \(\gamma_i = \frac{\beta_i}{\alpha_i}\) represents the ratio of death to birth rates for different states.</li>
+</ul>
+</li>
+<li>
+<p><strong>Mean Fixation Time</strong>:</p>
+<ul>
+<li>For large population sizes, the expected time to fixation for a neutral allele is approximately \(N^2[(1 - p) \log(1 - p) + p \log p]\) generations.</li>
+<li>The diversity (heterozygosity) decays exponentially at a rate proportional to \(2 / N^2\), quantifying the effect of genetic drift.</li>
+</ul>
+</li>
+<li>
+<p><strong>Moran Process with Selection</strong>:</p>
+<ul>
+<li><strong>Selection</strong> introduces differential reproduction rates. Let \(r_A = r\) be the reproduction rate of type \(A\), and \(r_B = 1\) for type \(B\). The probabilities of reproducing type \(A\) or type \(B\) are modeled as competing exponentials.</li>
+<li>Transition probabilities for the Moran process with selection are:
+\[
+P(T_A &lt; T_B) = \frac{r^i}{r^i + (N - i)}
+\]</li>
+</ul>
+</li>
+<li>
+<p><strong>Poisson Process</strong>:</p>
+<ul>
+<li>A counting process where events (e.g., mutations) occur randomly over time, with the number of events in any interval following a Poisson distribution.</li>
+<li><strong>Inter-arrival times</strong> between events follow an exponential distribution with parameter \(\lambda\), where \(\lambda t\) is the expected number of events in time \(t\).</li>
+</ul>
+</li>
+<li>
+<p><strong>Rate of Evolution</strong>:</p>
+<ul>
+<li>The rate at which a beneficial mutation takes over the population is proportional to the mutation rate \(u\) and the fixation probability \(\rho\). If the mutant is neutral, the rate of evolution is simply the mutation rate \(R = u\).</li>
+</ul>
+</li>
+<li>
+<p><strong>Molecular Clock of Neutral Evolution</strong>:</p>
+<ul>
+<li>Neutral mutations accumulate at a constant rate, independent of population size, leading to the idea of a molecular clock used to estimate evolutionary timescales.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="key-equations-and-models"><a class="header" href="#key-equations-and-models">Key Equations and Models</a></h2>
+<ul>
+<li>
+<p><strong>Conditional Probability</strong>:
+\[
+P(X | Y) = \frac{P(X, Y)}{P(Y)}
+\]</p>
+<ul>
+<li>Bayes' theorem and the law of total probability allow the calculation of posterior probabilities in stochastic models.</li>
+</ul>
+</li>
+<li>
+<p><strong>Exponential Distribution</strong>:</p>
+<ul>
+<li>Probability density function:
+\[
+f(x) = \lambda e^{-\lambda x}
+\]</li>
+<li><strong>Memoryless property</strong>: \(P(X &gt; s + t | X &gt; t) = P(X &gt; s)\), meaning the probability of an event occurring in the future does not depend on how long it has already been.</li>
+</ul>
+</li>
+<li>
+<p><strong>Moran Process Transition Probabilities</strong>:
+\[
+P_{i, i+1} = p(1 - p), \quad P_{i, i-1} = (1 - p)p, \quad P_{i, i} = p^2 + (1 - p)^2
+\]</p>
+<ul>
+<li>Describes the random drift of allele frequencies in a finite population.</li>
+</ul>
+</li>
+<li>
+<p><strong>Fixation Probability in the Moran Process</strong>:
+\[
+x_i = \frac{i}{N}
+\]</p>
+<ul>
+<li>For neutral mutations, the probability of fixation is simply the initial frequency of the allele.</li>
+</ul>
+</li>
+<li>
+<p><strong>Absorption Probability in Birth-Death Process</strong>:
+\[
+x_i = \frac{1 + \sum_{j=1}^{i-1} \prod_{k=1}^{j} \gamma_k}{1 + \sum_{j=1}^{N-1} \prod_{k=1}^{j} \gamma_k}
+\]</p>
+<ul>
+<li>Represents the probability of ending up in a certain absorbing state (all type \(A\)).</li>
+</ul>
+</li>
+<li>
+<p><strong>Rate of Evolution</strong>:
+\[
+R = N u \rho
+\]</p>
+<ul>
+<li>Describes how fast a population evolves from one state to another under mutation and selection.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="summary-points"><a class="header" href="#summary-points">Summary Points</a></h2>
+<ul>
+<li>The <strong>Moran process</strong> is a fundamental birth-death process in population genetics, capturing the dynamics of allele frequencies in finite populations.</li>
+<li><strong>Markov chains</strong> and stochastic processes underpin the mathematical framework, where each state represents a different composition of the population.</li>
+<li><strong>Fixation probabilities</strong> and <strong>mean fixation time</strong> can be analytically derived for both neutral and selectively advantageous alleles.</li>
+<li><strong>Poisson processes</strong> model random mutation events, and the molecular clock of neutral evolution assumes that mutations accumulate at a constant rate over time.</li>
+<li>The <strong>Moran process with selection</strong> introduces competing reproduction rates, influencing the rate at which beneficial alleles spread in the population.</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../24hs/evodynamo/02_quasispecies.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../../24hs/evodynamo/04_evolutionary_dynamics_of_cancer.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../24hs/evodynamo/02_quasispecies.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../../24hs/evodynamo/04_evolutionary_dynamics_of_cancer.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../../mermaid.min.js"></script>
+        <script src="../../mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>
